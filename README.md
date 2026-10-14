@@ -113,6 +113,10 @@ service and web UI with the public addresses, and redeploys the static front pag
 https://careerpilot-portal.vercel.app opens the portal. The links work while the laptop is on and change on every run;
 `stop-local.ps1` closes the tunnels.
 
+Free quick tunnels are deleted when the laptop sleeps or the network drops. For a demo, run
+`scripts\keep-online.ps1` instead: it shares the portal, checks the public link every minute, reopens the tunnels and
+updates the Vercel page when needed, and keeps Windows awake while its window is open.
+
 ## Running without Docker (manual)
 
 1. Install JDK 21. Start MySQL 8, Redis 7 (6.2 or newer) and RabbitMQ 3/4 locally (or

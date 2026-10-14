@@ -14,7 +14,10 @@ $appPorts = 3000, 8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 80
 $owners = Get-NetTCPConnection -State Listen -LocalPort $appPorts -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique
 foreach ($id in $owners) { Stop-Process -Id $id -Force -ErrorAction SilentlyContinue }
 Write-Host "Stopped $(@($owners).Count) CareerPilot app(s)."
-# public tunnels opened by share-online.ps1
+# the keep-online watcher (it would reopen the tunnels) and the public tunnels opened by share-online.ps1
+Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
+    Where-Object { $_.CommandLine -like '*keep-online.ps1*' } |
+    ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
 Get-Process cloudflared -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 
 if ($All) {
