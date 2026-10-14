@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Student', ~{::#page}, 'tpo-student')}">
+<body>
+<div id="page">
+<input type="hidden" id="user-id" th:value="${userId}">
+<div id="head" class="page-head"></div>
+<div class="row g-3">
+    <div class="col-lg-4"><div class="card mb-3"><div class="card-header d-flex justify-content-between">Academic record <button class="btn btn-sm btn-light" id="edit-academic">Edit</button></div><div class="card-body small" id="academic"></div></div>
+        <div class="card"><div class="card-header">Readiness &amp; prediction</div><div class="card-body" id="readiness"></div></div></div>
+    <div class="col-lg-8"><div class="card mb-3"><div class="card-header">Profile</div><div class="card-body" id="profile"></div></div>
+        <div class="card"><div class="card-header">Placement activity</div><div class="card-body" id="activity"></div></div></div>
+</div>
+</div>
+</body>
+</html>

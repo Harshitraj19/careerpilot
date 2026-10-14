@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Placement policy', ~{::#page}, 'tpo-policy')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Placement policy</h1><div class="sub">Rules applied automatically to every application.</div></div><button class="btn btn-primary" id="save">Save policy</button></div>
+<form class="card" id="form" style="max-width:720px"><div class="card-body row g-3">
+    <div class="col-md-6"><label class="form-label">Dream tier from (LPA)</label><input class="form-control" type="number" step="0.01" name="dreamMinCtc"></div>
+    <div class="col-md-6"><label class="form-label">Super-dream tier from (LPA)</label><input class="form-control" type="number" step="0.01" name="superDreamMinCtc"></div>
+    <div class="col-md-6"><label class="form-label">Max active applications per student</label><input class="form-control" type="number" min="1" name="maxActiveApplications"></div>
+    <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" name="oneOfferPolicy" id="oop"><label class="form-check-label" for="oop">
+        One-offer policy: placed students may apply only to a higher tier</label></div></div>
+    <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" name="pptMandatory" id="ppt"><label class="form-check-label" for="ppt">
+        Pre-placement talk attendance required to apply</label></div></div>
+    <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" name="resumeRequired" id="res"><label class="form-check-label" for="res">
+        Resume required to apply</label></div></div>
+    <div class="col-12 small text-muted" id="updated"></div>
+</div></form>
+</div>
+</body>
+</html>

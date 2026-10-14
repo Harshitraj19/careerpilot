@@ -1,0 +1,10 @@
+server:
+  port: ${PORT:8082}
+
+spring:
+  application:
+    name: profile-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_profile?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC

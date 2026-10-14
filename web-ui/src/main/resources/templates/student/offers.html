@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Offers', ~{::#page}, 'student-offers')}">
+<body>
+<div id="page">
+<div class="page-head">
+    <div><h1>Offers &amp; certificate</h1><div class="sub">Accept or decline offers, report off-campus offers and download your placement certificate.</div></div>
+    <button class="btn btn-outline-primary" id="off-campus"><i class="bi bi-plus-circle me-1"></i>Report off-campus offer</button>
+</div>
+<div class="card mb-3"><div class="card-header">My offers</div><div class="card-body p-0" id="offer-table"></div></div>
+<div class="card"><div class="card-header">Placement certificates</div><div class="card-body p-0" id="cert-table"></div></div>
+</div>
+</body>
+</html>

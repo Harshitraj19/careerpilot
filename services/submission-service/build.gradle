@@ -1,0 +1,11 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Code plagiarism detection (token-based, ignores renamed variables)
+    implementation "de.jplag:jplag:${rootProject.jplagVersion}"
+    implementation "de.jplag:java:${rootProject.jplagVersion}"
+    implementation "de.jplag:cpp:${rootProject.jplagVersion}"
+    implementation "de.jplag:python-3:${rootProject.jplagVersion}"
+}

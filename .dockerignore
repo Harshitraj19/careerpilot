@@ -1,0 +1,8 @@
+**/build
+**/.gradle
+.git
+.idea
+**/storage
+**/data
+*.zip
+docs

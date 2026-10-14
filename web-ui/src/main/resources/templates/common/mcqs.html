@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('MCQ bank', ~{::#page}, 'mcqs')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>MCQ bank</h1><div class="sub">Write questions or generate them with AI. AI questions need approval before use.</div></div>
+    <div class="d-flex gap-2"><button class="btn btn-outline-primary staff-only" id="generate"><i class="bi bi-stars me-1"></i>Generate with AI</button>
+        <button class="btn btn-primary" id="add"><i class="bi bi-plus-lg me-1"></i>Add question</button></div></div>
+<div class="card"><div class="card-body">
+    <div class="row g-2 mb-3">
+        <div class="col-md-4"><input class="form-control" id="q" placeholder="Search"></div>
+        <div class="col-md-3"><select class="form-select" id="topic"><option value="">All topics</option><option>QUANTITATIVE</option><option>LOGICAL</option><option>VERBAL</option><option>TECHNICAL</option></select></div>
+        <div class="col-md-2"><select class="form-select" id="difficulty"><option value="">Any</option><option>EASY</option><option>MEDIUM</option><option>HARD</option></select></div>
+        <div class="col-md-3"><select class="form-select" id="approved"><option value="">Approved + pending</option><option value="true">Approved</option><option value="false">Pending approval</option></select></div>
+    </div>
+    <div id="list"></div><div id="pager" class="mt-2"></div>
+</div></div>
+</div>
+</body>
+</html>

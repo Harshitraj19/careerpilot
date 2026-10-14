@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Applications', ~{::#page}, 'tpo-applications')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Applications</h1><div class="sub">Monitor every application across drives.</div></div>
+    <select class="form-select" id="status" style="width:auto"><option value="">All statuses</option><option>APPLIED</option><option>SHORTLISTED</option><option>IN_PROCESS</option><option>SELECTED</option><option>REJECTED</option><option>WITHDRAWN</option></select></div>
+<div class="card"><div class="card-body p-0" id="list"></div></div><div id="pager" class="mt-2"></div>
+</div>
+</body>
+</html>

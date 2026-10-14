@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Application', ~{::#page}, 'student-application')}">
+<body>
+<div id="page">
+<input type="hidden" id="app-id" th:value="${id}">
+<div class="page-head" id="app-head"></div>
+<div class="row g-3">
+    <div class="col-lg-7"><div class="card"><div class="card-header">Progress</div><div class="card-body"><ul class="timeline mb-0" id="timeline"></ul></div></div></div>
+    <div class="col-lg-5"><div class="card"><div class="card-header">Interview slots</div><div class="card-body" id="slots"></div></div></div>
+</div>
+</div>
+</body>
+</html>

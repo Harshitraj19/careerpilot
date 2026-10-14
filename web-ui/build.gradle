@@ -1,0 +1,15 @@
+apply plugin: 'org.springframework.boot'
+
+// Web front end: Spring MVC + Thymeleaf pages, Bootstrap 5 UI.
+// The browser never sees the JWT: it is kept in the server-side session and
+// API calls go through the /bff proxy (Backend-for-Frontend) to the gateway.
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    testImplementation 'org.springframework.security:spring-security-test'
+}

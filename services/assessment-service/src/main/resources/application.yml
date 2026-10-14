@@ -1,0 +1,16 @@
+server:
+  port: ${PORT:8086}
+
+spring:
+  application:
+    name: assessment-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_assessment?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
+placify:
+  assessment:
+    # attempts with a proctoring trust score below this are sent for human review
+    min-trust-score: 60
+    default-cutoff-percent: 50

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Test', ~{::#page}, 'test-detail')}">
+<body>
+<div id="page">
+<input type="hidden" id="test-id" th:value="${testId}">
+<div class="page-head" id="head"></div>
+<div class="row g-3 mb-3" id="stats"></div>
+<div class="card mb-3"><div class="card-header d-flex justify-content-between">Results <button class="btn btn-sm btn-outline-primary" id="plag"><i class="bi bi-files me-1"></i>Run plagiarism check</button></div><div class="card-body p-0" id="results"></div></div>
+<div class="card"><div class="card-header">Question pool</div><div class="card-body p-0" id="pool"></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/auth :: auth('Student sign-up', ~{::#page})}">
+<body>
+<div id="page" class="wide-page">
+    <div class="card auth-card">
+        <div class="card-body p-4">
+            <h2 class="h5 fw-bold mb-1">Create your student account</h2>
+            <p class="text-muted small">Verify your e-mail with a one-time code and choose your own password. You log in with your
+                registration number. The placement office can correct your academic details later.</p>
+            <div th:if="${error}" class="alert alert-danger py-2 small" th:text="${error}"></div>
+            <form th:action="@{/register/student}" method="post" id="register-form">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="name">Full name</label>
+                        <input class="form-control" id="name" name="name" th:value="${form.name}" required maxlength="255" autocomplete="name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="regNo">Registration number (your login)</label>
+                        <input class="form-control text-uppercase" id="regNo" name="regNo" th:value="${form.regNo}" required
+                               pattern="[A-Za-z0-9]{5,20}" maxlength="20" placeholder="e.g. 22BCE1234" title="5-20 letters and digits">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label small fw-semibold" for="branch">Branch</label>
+                        <select class="form-select" id="branch" name="branch" required>
+                            <option value="">Choose...</option>
+                            <option value="CSE" th:selected="${form.branch == 'CSE'}">Computer Science (CSE)</option>
+                            <option value="IT" th:selected="${form.branch == 'IT'}">Information Technology (IT)</option>
+                            <option value="ECE" th:selected="${form.branch == 'ECE'}">Electronics &amp; Communication (ECE)</option>
+                            <option value="EEE" th:selected="${form.branch == 'EEE'}">Electrical &amp; Electronics (EEE)</option>
+                            <option value="ME" th:selected="${form.branch == 'ME'}">Mechanical (ME)</option>
+                            <option value="CE" th:selected="${form.branch == 'CE'}">Civil (CE)</option>
+                            <option value="AIDS" th:selected="${form.branch == 'AIDS'}">AI &amp; Data Science (AIDS)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label small fw-semibold" for="batch">Graduation year</label>
+                        <input class="form-control" id="batch" name="batch" type="number" min="2000" max="2100" th:value="${form.batch}" required placeholder="2027">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label small fw-semibold" for="cgpa">Current CGPA</label>
+                        <input class="form-control" id="cgpa" name="cgpa" type="number" step="0.01" min="0" max="10" th:value="${form.cgpa}" required placeholder="8.25">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="phone">Phone</label>
+                        <input class="form-control" id="phone" name="phone" th:value="${form.phone}" maxlength="20" autocomplete="tel">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="email">E-mail</label>
+                        <div class="input-group">
+                            <input class="form-control" id="email" name="email" type="email" th:value="${form.email}" required autocomplete="email">
+                            <button class="btn btn-outline-primary" type="button" id="send-otp" data-otp-url="/register/student/otp" data-otp-fields="regNo">Send code</button>
+                        </div>
+                        <div class="form-text" id="otp-status">Enter your registration number and e-mail, then send the code.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="otp">E-mail verification code</label>
+                        <input class="form-control mono" id="otp" name="otp" inputmode="numeric" maxlength="6" required autocomplete="one-time-code">
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="newPassword">Password</label>
+                        <div class="input-group">
+                            <input class="form-control" type="password" id="newPassword" name="password" required minlength="8" autocomplete="new-password" data-strength="#pw-strength">
+                            <button class="btn btn-outline-secondary" type="button" data-toggle-password="#newPassword" aria-label="Show password"><i class="bi bi-eye"></i></button>
+                        </div>
+                        <div class="progress mt-2" style="height:.35rem"><div class="progress-bar" id="pw-strength" style="width:0"></div></div>
+                        <div class="form-text">At least 8 characters with upper and lower case letters, a digit and a symbol.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="confirmPassword">Confirm password</label>
+                        <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password">
+                    </div>
+                    <div class="col-12" th:if="${captcha.enabled}">
+                        <label class="form-label small fw-semibold" for="captchaAnswer">Enter the characters shown</label>
+                        <div class="d-flex gap-2 align-items-center" style="max-width:420px">
+                            <img class="captcha-img" id="captcha-img" th:src="${captcha.image}" alt="captcha">
+                            <button class="btn btn-light" type="button" id="captcha-refresh" aria-label="New captcha"><i class="bi bi-arrow-clockwise"></i></button>
+                            <input class="form-control" id="captchaAnswer" name="captchaAnswer" maxlength="8" required autocomplete="off">
+                        </div>
+                        <input type="hidden" name="captchaId" id="captchaId" th:value="${captcha.id}">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-lg w-100 mt-4" type="submit">Create account</button>
+            </form>
+            <div class="text-center mt-3 small"><a th:href="@{/login(portal='STUDENT')}">Already have an account? Log in</a></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

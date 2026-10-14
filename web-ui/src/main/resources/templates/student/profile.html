@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('My profile', ~{::#page}, 'student-profile')}">
+<body>
+<div id="page">
+<div class="page-head">
+    <div><h1>My profile</h1><div class="sub">Recruiters see this profile when you apply. Keep it complete and honest.</div></div>
+    <button class="btn btn-primary" id="save-profile"><i class="bi bi-check2 me-1"></i>Save changes</button>
+</div>
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="card mb-3"><div class="card-body text-center">
+            <img id="photo" class="rounded-circle border mb-2" width="110" height="110" alt="Photo" style="object-fit:cover;background:#eef2f7">
+            <h5 class="mb-0" id="p-name"></h5>
+            <div class="text-muted small" id="p-reg"></div>
+            <label class="btn btn-sm btn-outline-secondary mt-2"><i class="bi bi-camera me-1"></i>Change photo
+                <input type="file" id="photo-file" accept="image/png,image/jpeg" hidden></label>
+        </div></div>
+        <div class="card mb-3"><div class="card-header">Profile completeness</div><div class="card-body" id="completeness"></div></div>
+        <div class="card mb-3"><div class="card-header">Academic record <span class="small text-muted">(managed by the placement office)</span></div>
+            <div class="card-body small" id="academic"></div></div>
+        <div class="card"><div class="card-header">Resume</div><div class="card-body" id="resume-box">
+            <div id="resume-info" class="small mb-2"></div>
+            <div class="d-flex flex-wrap gap-2">
+                <label class="btn btn-sm btn-primary"><i class="bi bi-upload me-1"></i>Upload PDF/DOCX
+                    <input type="file" id="resume-file" accept=".pdf,.docx,.doc" hidden></label>
+                <button class="btn btn-sm btn-outline-secondary" id="resume-view"><i class="bi bi-eye me-1"></i>View</button>
+                <button class="btn btn-sm btn-outline-primary" id="resume-parse"><i class="bi bi-magic me-1"></i>Auto-fill with AI</button>
+                <button class="btn btn-sm btn-outline-danger" id="resume-delete"><i class="bi bi-trash"></i></button>
+            </div>
+        </div></div>
+    </div>
+    <div class="col-lg-8">
+        <form id="profile-form" class="card" autocomplete="off"><div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4"><label class="form-label">Phone</label><input class="form-control" name="phone" maxlength="20"></div>
+                <div class="col-md-4"><label class="form-label">10th %</label><input class="form-control" type="number" step="0.01" min="0" max="100" name="tenthPercentage"></div>
+                <div class="col-md-4"><label class="form-label">12th / Diploma %</label><input class="form-control" type="number" step="0.01" min="0" max="100" name="twelfthPercentage"></div>
+                <div class="col-12"><label class="form-label">Skills <span class="text-muted small">(comma separated)</span></label>
+                    <input class="form-control" name="skills" data-list placeholder="Java, Spring Boot, SQL, React"></div>
+                <div class="col-12"><label class="form-label">Certifications <span class="text-muted small">(comma separated)</span></label>
+                    <input class="form-control" name="certifications" data-list></div>
+                <div class="col-12"><label class="form-label">Professional summary</label>
+                    <textarea class="form-control" name="summary" rows="3" maxlength="2000"></textarea></div>
+                <div class="col-12"><label class="form-label">Internships</label>
+                    <textarea class="form-control" name="internships" rows="2" maxlength="3000"></textarea></div>
+                <div class="col-12"><label class="form-label">Achievements</label>
+                    <textarea class="form-control" name="achievements" rows="2" maxlength="3000"></textarea></div>
+                <div class="col-md-4"><label class="form-label">GitHub</label><input class="form-control" name="githubUrl" type="url"></div>
+                <div class="col-md-4"><label class="form-label">LinkedIn</label><input class="form-control" name="linkedinUrl" type="url"></div>
+                <div class="col-md-4"><label class="form-label">Portfolio</label><input class="form-control" name="portfolioUrl" type="url"></div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Projects</h6>
+                <button class="btn btn-sm btn-outline-primary" type="button" id="add-project"><i class="bi bi-plus"></i> Add project</button>
+            </div>
+            <div id="projects"></div>
+        </div></form>
+    </div>
+</div>
+</div>
+</body>
+</html>

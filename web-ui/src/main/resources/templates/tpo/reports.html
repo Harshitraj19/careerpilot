@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Reports & prediction', ~{::#page}, 'tpo-reports')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Reports &amp; prediction</h1><div class="sub">Download placement reports and manage the placement-chance model.</div></div></div>
+<div class="row g-3">
+    <div class="col-lg-5"><div class="card h-100"><div class="card-header">Placement report</div><div class="card-body">
+        <label class="form-label">Batch</label><input class="form-control mb-3" type="number" id="batch" placeholder="All batches">
+        <div class="d-flex gap-2"><button class="btn btn-danger" id="pdf"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</button>
+            <button class="btn btn-success" id="xlsx"><i class="bi bi-file-earmark-excel me-1"></i>Excel</button></div>
+        <div class="form-text">Summary, branch-wise statistics, recruiters and a student-wise sheet.</div>
+    </div></div></div>
+    <div class="col-lg-7"><div class="card h-100"><div class="card-header">Placement-chance model <span class="badge text-bg-light">Tribuo logistic regression</span></div><div class="card-body" id="model"></div></div></div>
+</div>
+</div>
+</body>
+</html>

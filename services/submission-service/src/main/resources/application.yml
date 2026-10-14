@@ -1,0 +1,40 @@
+server:
+  port: ${PORT:8085}
+
+spring:
+  application:
+    name: submission-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_submission?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
+placify:
+  security:
+    public-paths:
+      - /api/submissions/callback
+  judge0:
+    # Self-hosted Judge0 (e.g. http://judge0:2358) or RapidAPI (https://judge0-ce.p.rapidapi.com)
+    base-url: ${JUDGE0_URL:https://judge0-ce.p.rapidapi.com}
+    rapid-api-key: ${JUDGE0_RAPIDAPI_KEY:}
+    rapid-api-host: ${JUDGE0_RAPIDAPI_HOST:judge0-ce.p.rapidapi.com}
+    auth-token: ${JUDGE0_AUTH_TOKEN:}
+    # URL Judge0 can reach to report results; leave empty to rely on polling only
+    callback-base-url: ${JUDGE0_CALLBACK_URL:}
+    poll-interval-ms: 3000
+    run-max-polls: 15
+    run-poll-delay-ms: 500
+    # auto: Judge0 when a RapidAPI key or self-hosted URL is set, otherwise compile and run locally
+    # (Java, Python, C, C++, JavaScript - whichever toolchains are installed). local | judge0 force one.
+    runner: ${CODE_RUNNER:auto}
+    local-time-limit-seconds: ${LOCAL_RUN_TIME_LIMIT:5}
+    local-python: ${LOCAL_PYTHON:}
+  plagiarism:
+    default-threshold: 0.8
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      judge0:
+        base-config: default
+        wait-duration-in-open-state: 20s

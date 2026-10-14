@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/auth :: auth('Company registration', ~{::#page})}">
+<body>
+<div id="page" class="wide-page">
+    <div class="card auth-card">
+        <div class="card-body p-4">
+            <h2 class="h5 fw-bold mb-1">Register your company</h2>
+            <p class="text-muted small">Verify your official e-mail with a one-time code. The placement office reviews every registration before the account is activated.</p>
+            <div th:if="${error}" class="alert alert-danger py-2 small" th:text="${error}"></div>
+            <form th:action="@{/register/company}" method="post" id="register-form">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="companyName">Company name</label>
+                        <input class="form-control" id="companyName" name="companyName" th:value="${form.companyName}" required maxlength="255">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="industry">Industry</label>
+                        <input class="form-control" id="industry" name="industry" th:value="${form.industry}" placeholder="IT services, FinTech, ..." maxlength="255">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="website">Website</label>
+                        <input class="form-control" id="website" name="website" type="url" th:value="${form.website}" placeholder="https://">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="contactPerson">Contact person</label>
+                        <input class="form-control" id="contactPerson" name="contactPerson" th:value="${form.contactPerson}" required maxlength="255">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="phone">Phone</label>
+                        <input class="form-control" id="phone" name="phone" th:value="${form.phone}" maxlength="20">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="email">Official e-mail (your login)</label>
+                        <div class="input-group">
+                            <input class="form-control" id="email" name="email" type="email" th:value="${form.email}" required>
+                            <button class="btn btn-outline-primary" type="button" id="send-otp">Send code</button>
+                        </div>
+                        <div class="form-text" id="otp-status"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="otp">E-mail verification code</label>
+                        <input class="form-control mono" id="otp" name="otp" inputmode="numeric" maxlength="6" required autocomplete="one-time-code">
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="newPassword">Password</label>
+                        <div class="input-group">
+                            <input class="form-control" type="password" id="newPassword" name="password" required minlength="8" autocomplete="new-password" data-strength="#pw-strength">
+                            <button class="btn btn-outline-secondary" type="button" data-toggle-password="#newPassword" aria-label="Show password"><i class="bi bi-eye"></i></button>
+                        </div>
+                        <div class="progress mt-2" style="height:.35rem"><div class="progress-bar" id="pw-strength" style="width:0"></div></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold" for="confirmPassword">Confirm password</label>
+                        <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password">
+                    </div>
+                    <div class="col-12" th:if="${captcha.enabled}">
+                        <label class="form-label small fw-semibold" for="captchaAnswer">Enter the characters shown</label>
+                        <div class="d-flex gap-2 align-items-center" style="max-width:420px">
+                            <img class="captcha-img" id="captcha-img" th:src="${captcha.image}" alt="captcha">
+                            <button class="btn btn-light" type="button" id="captcha-refresh" aria-label="New captcha"><i class="bi bi-arrow-clockwise"></i></button>
+                            <input class="form-control" id="captchaAnswer" name="captchaAnswer" maxlength="8" required autocomplete="off">
+                        </div>
+                        <input type="hidden" name="captchaId" id="captchaId" th:value="${captcha.id}">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-lg w-100 mt-4" type="submit">Submit registration</button>
+            </form>
+            <div class="text-center mt-3 small"><a th:href="@{/login(portal='COMPANY')}">Already registered? Log in</a></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

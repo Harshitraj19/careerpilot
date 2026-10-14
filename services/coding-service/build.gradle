@@ -1,0 +1,8 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Live contest leaderboards (sorted sets)
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+}

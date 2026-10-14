@@ -1,0 +1,15 @@
+server:
+  port: ${PORT:8089}
+
+spring:
+  application:
+    name: interview-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_interview?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
+placify:
+  interview:
+    # Regenerate a company's AI prep summary when this many new experiences were approved
+    summary-refresh-after: 2

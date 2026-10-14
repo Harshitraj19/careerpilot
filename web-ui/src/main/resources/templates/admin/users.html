@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Users', ~{::#page}, 'admin-users')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Users &amp; accounts</h1><div class="sub">Create placement officers and administrators, block or unblock any account.</div></div>
+    <div class="d-flex gap-2"><button class="btn btn-outline-primary" id="new-tpo"><i class="bi bi-person-badge me-1"></i>New TPO</button>
+        <button class="btn btn-outline-primary" id="new-admin"><i class="bi bi-shield-lock me-1"></i>New admin</button></div></div>
+<div class="card"><div class="card-body">
+    <div class="row g-2 mb-3"><div class="col-md-5"><input class="form-control" id="q" placeholder="Search"></div>
+        <div class="col-md-3"><select class="form-select" id="role"><option value="">All roles</option><option>STUDENT</option><option>COMPANY</option><option>TPO</option><option>ADMIN</option></select></div>
+        <div class="col-md-3"><select class="form-select" id="status"><option value="">All statuses</option><option>ACTIVE</option><option>PENDING</option><option>BLOCKED</option><option>REJECTED</option></select></div></div>
+    <div id="list"></div><div id="pager" class="mt-2"></div></div></div>
+</div>
+</body>
+</html>

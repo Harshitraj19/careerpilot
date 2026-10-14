@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Plagiarism check', ~{::#page}, 'plagiarism')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Plagiarism check</h1><div class="sub">Compares code submissions of a test or contest with JPlag (token-based) and winnowing fingerprints.</div></div></div>
+<form class="card mb-3" id="plag-form"><div class="card-body row g-2 align-items-end">
+    <div class="col-md-3"><label class="form-label small">Scope</label><select class="form-select" name="scope"><option value="ASSESSMENT">Test</option><option value="CONTEST">Contest</option></select></div>
+    <div class="col-md-3"><label class="form-label small">Test / contest ID</label><input class="form-control" type="number" name="scopeId" required></div>
+    <div class="col-md-3"><label class="form-label small">Similarity threshold (%)</label><input class="form-control" type="number" name="threshold" value="70" min="10" max="100"></div>
+    <div class="col-md-3 d-flex gap-2"><button class="btn btn-primary flex-fill" type="submit">Run check</button><button class="btn btn-outline-secondary" type="button" id="history">History</button></div>
+</div></form>
+<div id="plag-result"></div>
+</div>
+</body>
+</html>

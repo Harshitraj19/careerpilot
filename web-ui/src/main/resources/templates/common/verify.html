@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/auth :: auth('Verify certificate', ~{::#page})}">
+<body>
+<div id="page">
+    <div class="card auth-card">
+        <div class="card-body p-4">
+            <h2 class="h5 fw-bold mb-3"><i class="bi bi-patch-check me-1"></i>Placement certificate verification</h2>
+            <form th:action="@{/verify}" method="get" class="d-flex gap-2 mb-3">
+                <input class="form-control mono" name="code" th:value="${code}" placeholder="Certificate code" required>
+                <button class="btn btn-primary" type="submit">Verify</button>
+            </form>
+            <div th:if="${error}" class="alert alert-danger mb-0" th:text="${error}"></div>
+            <th:block th:if="${valid != null}">
+                <div th:if="${valid}" class="alert alert-success d-flex align-items-center gap-2">
+                    <i class="bi bi-check-circle-fill fs-4"></i><div><strong>Valid certificate.</strong> <span th:text="${message}"></span></div>
+                </div>
+                <div th:unless="${valid}" class="alert alert-danger d-flex align-items-center gap-2">
+                    <i class="bi bi-x-circle-fill fs-4"></i><div><strong>Not valid.</strong> <span th:text="${message}"></span></div>
+                </div>
+                <table class="table table-sm mb-0" th:if="${cert}">
+                    <tr><th class="text-muted fw-normal">Student</th><td th:text="${cert.studentName}"></td></tr>
+                    <tr><th class="text-muted fw-normal">Registration no.</th><td th:text="${cert.regNo}"></td></tr>
+                    <tr><th class="text-muted fw-normal">Branch</th><td th:text="${cert.branch}"></td></tr>
+                    <tr><th class="text-muted fw-normal">Company</th><td th:text="${cert.companyName}"></td></tr>
+                    <tr><th class="text-muted fw-normal">Role</th><td th:text="${cert.role}"></td></tr>
+                    <tr th:if="${!#strings.isEmpty(cert.ctcLpa)}"><th class="text-muted fw-normal">CTC</th><td th:text="${cert.ctcLpa} + ' LPA'"></td></tr>
+                    <tr><th class="text-muted fw-normal">Issued</th><td th:text="${#strings.substring(cert.issuedAt, 0, 10)}"></td></tr>
+                    <tr><th class="text-muted fw-normal">Code</th><td class="mono" th:text="${cert.code}"></td></tr>
+                </table>
+            </th:block>
+        </div>
+    </div>
+</div>
+</body>
+</html>

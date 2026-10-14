@@ -1,0 +1,12 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation "io.jsonwebtoken:jjwt-api:${rootProject.jjwtVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:${rootProject.jjwtVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${rootProject.jjwtVersion}"
+    // Bulk student import from Excel
+    implementation "org.apache.poi:poi-ooxml:${rootProject.poiVersion}"
+}

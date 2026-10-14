@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Tests', ~{::#page}, 'student-tests')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Tests</h1><div class="sub">Online tests for your drives and practice tests from the placement office.</div></div></div>
+<div class="alert alert-info small"><i class="bi bi-camera-video me-1"></i>Proctored tests use your webcam and full-screen mode. Use a quiet room, good light, and keep your phone away.</div>
+<div class="card mb-3"><div class="card-header">Available tests</div><div class="card-body p-0" id="test-table"></div></div>
+<div class="card"><div class="card-header">My results</div><div class="card-body p-0" id="attempt-table"></div></div>
+</div>
+</body>
+</html>

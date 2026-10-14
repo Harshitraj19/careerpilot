@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Job posting', ~{::#page}, 'job-form')}">
+<body>
+<div id="page">
+<input type="hidden" id="job-id" th:value="${jobId}">
+<div class="page-head"><div><h1 id="form-title">Post a job</h1><div class="sub">Eligibility criteria are enforced automatically when students apply.</div></div>
+    <button class="btn btn-primary" id="save"><i class="bi bi-check2 me-1"></i>Save</button></div>
+<form id="job-form" class="row g-3">
+    <div class="col-lg-8"><div class="card"><div class="card-header">Role</div><div class="card-body row g-3">
+        <div class="col-md-8"><label class="form-label">Job title</label><input class="form-control" name="title" required maxlength="255"></div>
+        <div class="col-md-4"><label class="form-label">Type</label><select class="form-select" name="jobType">
+            <option value="FULL_TIME">Full time</option><option value="INTERNSHIP">Internship</option><option value="INTERNSHIP_WITH_PPO">Internship + PPO</option></select></div>
+        <div class="col-12"><label class="form-label">Description</label><textarea class="form-control" name="description" rows="8" required maxlength="20000"></textarea></div>
+        <div class="col-12"><label class="form-label">Required skills (comma separated)</label><input class="form-control" name="requiredSkills" data-list></div>
+        <div class="col-md-4"><label class="form-label">Location</label><input class="form-control" name="location"></div>
+        <div class="col-md-4"><label class="form-label">CTC (LPA)</label><input class="form-control" type="number" step="0.01" name="ctcLpa"></div>
+        <div class="col-md-4"><label class="form-label">Stipend / month</label><input class="form-control" type="number" name="stipend"></div>
+        <div class="col-md-6"><label class="form-label">Application deadline</label><input class="form-control" type="datetime-local" name="applicationDeadline" required></div>
+    </div></div></div>
+    <div class="col-lg-4"><div class="card"><div class="card-header">Eligibility</div><div class="card-body row g-3">
+        <div class="col-6"><label class="form-label">Min CGPA</label><input class="form-control" type="number" step="0.01" min="0" max="10" name="minCgpa"></div>
+        <div class="col-6"><label class="form-label">Max backlogs</label><input class="form-control" type="number" min="0" name="maxBacklogs"></div>
+        <div class="col-6"><label class="form-label">Min 10th %</label><input class="form-control" type="number" step="0.01" name="minTenth"></div>
+        <div class="col-6"><label class="form-label">Min 12th %</label><input class="form-control" type="number" step="0.01" name="minTwelfth"></div>
+        <div class="col-6"><label class="form-label">Batch (year)</label><input class="form-control" type="number" name="eligibleBatch"></div>
+        <div class="col-12"><label class="form-label">Allowed branches (blank = all)</label><input class="form-control" name="allowedBranches" data-list list="branch-list"><datalist id="branch-list"></datalist></div>
+    </div></div></div>
+    <div class="col-12"><div class="card"><div class="card-header d-flex justify-content-between">Salary breakdown
+        <button type="button" class="btn btn-sm btn-outline-primary" id="add-salary"><i class="bi bi-plus"></i> Add component</button></div>
+        <div class="card-body"><div class="small text-muted mb-2">Shown to students on the job page, e.g. base pay, joining bonus, relocation, stock, benefits.</div>
+            <div id="salary"></div></div></div></div>
+    <div class="col-12"><div class="card"><div class="card-header d-flex justify-content-between">Selection rounds
+        <button type="button" class="btn btn-sm btn-outline-primary" id="add-round"><i class="bi bi-plus"></i> Add round</button></div>
+        <div class="card-body" id="rounds"></div></div></div>
+</form>
+</div>
+</body>
+</html>

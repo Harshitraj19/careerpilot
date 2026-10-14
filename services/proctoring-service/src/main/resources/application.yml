@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:8087}
+
+spring:
+  application:
+    name: proctoring-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_proctoring?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  rabbitmq:
+    listener:
+      simple:
+        concurrency: 2
+        max-concurrency: 6
+        prefetch: 2
+  servlet:
+    multipart:
+      max-file-size: 2MB
+
+placify:
+  proctoring:
+    # seconds during which the same violation type is not counted again
+    debounce-seconds: 10
+    # frames analysed between identity re-checks
+    identity-check-every: 10
+    identity-threshold: 0.45
+    movement-threshold-percent: 35
+    dark-threshold: 35
+    flag-below-trust-score: 60
+    snapshot-retention-days: 90
+    phone-detection:
+      enabled: ${PHONE_DETECTION_ENABLED:true}
+      model-url: ${PHONE_MODEL_URL:djl://ai.djl.pytorch/yolov5s}
+      min-confidence: 0.5
+    # optional DJL face-embedding model for identity checks (OpenCV is used when empty)
+    face-model-url: ${FACE_MODEL_URL:}

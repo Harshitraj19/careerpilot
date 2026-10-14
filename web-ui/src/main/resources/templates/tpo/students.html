@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Students', ~{::#page}, 'tpo-students')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Students</h1><div class="sub">Import the batch, create accounts and find students who need attention.</div></div>
+    <div class="d-flex gap-2"><button class="btn btn-outline-primary" id="add"><i class="bi bi-person-plus me-1"></i>Add student</button>
+        <button class="btn btn-primary" id="import"><i class="bi bi-upload me-1"></i>Import CSV / Excel</button></div></div>
+<ul class="nav nav-tabs mb-3">
+    <li class="nav-item"><a class="nav-link active" href="#" data-tab="all">All students</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="risk">At risk <span class="badge text-bg-danger" id="risk-count"></span></a></li>
+</ul>
+<div data-pane="all"><div class="card"><div class="card-body">
+    <div class="row g-2 mb-3"><div class="col-md-5"><input class="form-control" id="q" placeholder="Search name, reg. no or e-mail"></div>
+        <div class="col-md-4"><select class="form-select" id="branch"><option value="">All branches</option></select></div>
+        <div class="col-md-3"><input class="form-control" type="number" id="batch" placeholder="Batch (year)"></div></div>
+    <div id="list"></div><div id="pager" class="mt-2"></div></div></div></div>
+<div data-pane="risk" class="d-none"><div class="card"><div class="card-body">
+    <div class="d-flex gap-2 align-items-center mb-3"><label class="small">Readiness below</label><input class="form-control form-control-sm" type="number" id="threshold" value="40" style="width:90px">
+        <button class="btn btn-sm btn-outline-primary" id="reload-risk">Refresh</button></div>
+    <div id="risk"></div></div></div></div>
+</div>
+</body>
+</html>

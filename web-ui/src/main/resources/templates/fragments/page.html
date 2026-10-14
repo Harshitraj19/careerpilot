@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--/* Portal page layout: top bar, role sidebar, content, toasts and a shared modal. */-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="page(title, content, pageId)">
+<head th:replace="~{fragments/parts :: head(${title})}"></head>
+<body th:attr="data-page=${pageId},data-role=${me != null ? me.role : ''},data-user-id=${me != null ? me.userId : ''}" class="portal">
+
+<nav class="topbar navbar navbar-expand px-3">
+    <button class="btn btn-link text-white d-lg-none me-2 p-0" type="button" data-toggle-sidebar aria-label="Menu">
+        <i class="bi bi-list fs-3"></i>
+    </button>
+    <a class="navbar-brand d-flex align-items-center gap-2" th:href="${me != null ? me.home() : '/'}">
+        <img th:src="@{/img/logo-light.svg}" alt="" width="35" height="30">
+        <span class="fw-semibold">Career<span class="brand-accent">Pilot</span></span>
+        <span class="portal-chip" th:if="${me != null}" th:text="${me.role == 'TPO' ? 'Placement Office' : #strings.capitalize(#strings.toLowerCase(me.role))}">Student</span>
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-3" th:if="${me != null}">
+        <a th:href="@{/notifications}" class="position-relative text-white" title="Notifications" aria-label="Notifications">
+            <i class="bi bi-bell fs-5"></i>
+            <span id="notif-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
+        </a>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+                <span class="avatar" th:text="${#strings.substring(me.name == null or #strings.isEmpty(me.name) ? '?' : me.name, 0, 1)}">A</span>
+                <span class="ms-2 d-none d-md-inline" th:text="${me.name}">Name</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li><span class="dropdown-item-text small text-muted" th:text="${me.loginId}">id</span></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="@{/account}"><i class="bi bi-shield-lock me-2"></i>Account &amp; security</a></li>
+                <li><a class="dropdown-item" th:href="@{/account/change-password}"><i class="bi bi-key me-2"></i>Change password</a></li>
+                <li><a class="dropdown-item" th:href="@{/announcements}"><i class="bi bi-megaphone me-2"></i>Announcements</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form th:action="@{/logout}" method="post" class="px-3">
+                        <button class="btn btn-sm btn-outline-danger w-100" type="submit"><i class="bi bi-box-arrow-right me-1"></i>Log out</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="shell">
+    <aside class="sidebar" th:if="${me != null}">
+        <!--/* STUDENT */-->
+        <nav th:if="${me.role == 'STUDENT'}" class="nav flex-column">
+            <div class="nav-section">Overview</div>
+            <a th:replace="~{fragments/parts :: navLink('/student/dashboard', 'speedometer2', 'Dashboard')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/profile', 'person-vcard', 'My profile')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/calendar', 'calendar-event', 'Calendar')}"></a>
+            <div class="nav-section">Placements</div>
+            <a th:replace="~{fragments/parts :: navLink('/student/jobs', 'briefcase', 'Job openings')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/applications', 'diagram-3', 'My applications')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/tests', 'ui-checks', 'Tests')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/offers', 'award', 'Offers & certificate')}"></a>
+            <div class="nav-section">Preparation</div>
+            <a th:replace="~{fragments/parts :: navLink('/student/practice', 'code-slash', 'Coding practice')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/contests', 'trophy', 'Contests')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/aptitude', 'calculator', 'Aptitude practice')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/ats', 'file-earmark-check', 'Resume ATS check')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/mock-interviews', 'mic', 'AI mock interview')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/prep', 'building', 'Company prep hub')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/experiences', 'chat-quote', 'Experiences')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/hall-of-fame', 'stars', 'Hall of fame')}"></a>
+            <div class="nav-section">Support</div>
+            <a th:replace="~{fragments/parts :: navLink('/announcements', 'megaphone', 'Announcements')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/student/queries', 'chat-left-dots', 'Help desk (queries)')}"></a>
+        </nav>
+        <!--/* COMPANY */-->
+        <nav th:if="${me.role == 'COMPANY'}" class="nav flex-column">
+            <div class="nav-section">Overview</div>
+            <a th:replace="~{fragments/parts :: navLink('/company/dashboard', 'speedometer2', 'Dashboard')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/profile', 'building', 'Company profile')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/calendar', 'calendar-event', 'Calendar')}"></a>
+            <div class="nav-section">Hiring</div>
+            <a th:replace="~{fragments/parts :: navLink('/company/jobs', 'briefcase', 'Jobs & applicants')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/tests', 'ui-checks', 'Online tests')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/questions', 'code-square', 'Coding questions')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/mcqs', 'list-check', 'MCQ bank')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/plagiarism', 'files', 'Plagiarism check')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/company/offers', 'award', 'Offers')}"></a>
+        </nav>
+        <!--/* TPO and ADMIN share the placement office menu */-->
+        <nav th:if="${me.role == 'TPO' or me.role == 'ADMIN'}" class="nav flex-column">
+            <th:block th:if="${me.role == 'ADMIN'}">
+                <div class="nav-section">Administration</div>
+                <a th:replace="~{fragments/parts :: navLink('/admin/dashboard', 'cpu', 'System overview')}"></a>
+                <a th:replace="~{fragments/parts :: navLink('/admin/users', 'people', 'Users & accounts')}"></a>
+                <a th:replace="~{fragments/parts :: navLink('/admin/audit', 'journal-text', 'Audit log')}"></a>
+            </th:block>
+            <div class="nav-section">Placement office</div>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/dashboard', 'speedometer2', 'Dashboard')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/students', 'mortarboard', 'Students')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/companies', 'building-check', 'Company approvals')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/jobs', 'briefcase', 'Jobs & drives')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/applications', 'diagram-3', 'Applications')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/offers', 'patch-check', 'Offer verification')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/calendar', 'calendar-event', 'Calendar & attendance')}"></a>
+            <div class="nav-section">Assessments</div>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/tests', 'ui-checks', 'Tests & proctoring')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/mcqs', 'list-check', 'MCQ bank (AI)')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/questions', 'code-square', 'Coding questions')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/contests', 'trophy', 'Contests')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/plagiarism', 'files', 'Plagiarism check')}"></a>
+            <div class="nav-section">Engagement</div>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/announcements', 'megaphone', 'Announcements')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/queries', 'chat-left-dots', 'Student queries')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/experiences', 'chat-quote', 'Experience moderation')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/hall-of-fame', 'stars', 'Hall of fame')}"></a>
+            <div class="nav-section">Insights</div>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/reports', 'graph-up-arrow', 'Reports & prediction')}"></a>
+            <a th:replace="~{fragments/parts :: navLink('/tpo/policy', 'sliders', 'Placement policy')}"></a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <div th:if="${info}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${info}">ok</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div th:replace="${content}"></div>
+    </main>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts"></div>
+<div class="modal fade" id="app-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body"></div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="~{fragments/parts :: scripts}"></th:block>
+</body>
+</html>

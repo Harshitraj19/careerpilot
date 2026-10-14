@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Company profile', ~{::#page}, 'company-profile')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Company profile</h1><div class="sub">Students see this on your job postings.</div></div>
+    <button class="btn btn-primary" id="save"><i class="bi bi-check2 me-1"></i>Save</button></div>
+<div class="row g-3">
+    <div class="col-lg-4"><div class="card"><div class="card-body text-center">
+        <img id="logo" width="120" height="120" class="rounded border mb-2" style="object-fit:contain;background:#f8fafc" alt="Logo">
+        <div><label class="btn btn-sm btn-outline-secondary"><i class="bi bi-image me-1"></i>Upload logo<input type="file" id="logo-file" accept="image/png,image/jpeg" hidden></label></div>
+    </div></div></div>
+    <div class="col-lg-8"><form class="card" id="form"><div class="card-body row g-3">
+        <div class="col-md-6"><label class="form-label">Company name</label><input class="form-control" name="companyName" maxlength="255"></div>
+        <div class="col-md-6"><label class="form-label">Industry</label><input class="form-control" name="industry" maxlength="255"></div>
+        <div class="col-md-6"><label class="form-label">Website</label><input class="form-control" name="website" type="url"></div>
+        <div class="col-md-3"><label class="form-label">Location</label><input class="form-control" name="location"></div>
+        <div class="col-md-3"><label class="form-label">Employees</label><input class="form-control" name="employeeCount" type="number" min="1"></div>
+        <div class="col-12"><label class="form-label">About</label><textarea class="form-control" name="about" rows="6" maxlength="5000"></textarea></div>
+    </div></form></div>
+</div>
+</div>
+</body>
+</html>

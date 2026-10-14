@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Announcements', ~{::#page}, 'tpo-announcements')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Announcements</h1><div class="sub">Send a message to everyone in an audience - in-app, and by e-mail if you choose.</div></div></div>
+<div class="row g-3">
+    <div class="col-lg-5"><form class="card" id="form"><div class="card-body">
+        <div class="mb-2"><label class="form-label">Audience</label><select class="form-select" name="audience"><option value="ALL_STUDENTS">All students</option>
+            <option value="ALL_COMPANIES">All recruiters</option><option value="ALL_TPOS">Placement office</option><option value="EVERYONE">Everyone</option></select></div>
+        <div class="mb-2"><label class="form-label">Title</label><input class="form-control" name="title" required maxlength="255"></div>
+        <div class="mb-2"><label class="form-label">Message</label><textarea class="form-control" name="message" rows="6" required maxlength="2000"></textarea></div>
+        <div class="mb-2"><label class="form-label">Link inside CareerPilot (optional)</label><input class="form-control" name="link" placeholder="/student/jobs"></div>
+        <div class="form-check mb-3"><input class="form-check-input" type="checkbox" name="sendEmail" id="em"><label class="form-check-label" for="em">Also send by e-mail</label></div>
+        <button class="btn btn-primary w-100" type="submit"><i class="bi bi-megaphone me-1"></i>Send announcement</button>
+    </div></form></div>
+    <div class="col-lg-7"><div id="list"></div><div id="pager"></div></div>
+</div>
+</div>
+</body>
+</html>

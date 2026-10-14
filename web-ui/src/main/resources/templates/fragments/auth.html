@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--/* Layout for the home page, login, sign-up and password pages: what CareerPilot is on the left, the form on the right. */-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="auth(title, content)">
+<head th:replace="~{fragments/parts :: head(${title})}"></head>
+<body class="auth-page" data-page="auth">
+<header class="auth-header">
+    <div class="container d-flex align-items-center">
+        <a th:href="@{/}" class="d-flex align-items-center gap-2 text-decoration-none brand">
+            <img th:src="@{/img/logo-light.svg}" alt="" width="37" height="32"><span>Career<span class="brand-accent">Pilot</span></span>
+        </a>
+        <nav class="ms-auto d-flex align-items-center gap-2">
+            <a class="btn btn-sm btn-link text-white text-decoration-none" th:href="@{/login}">Log in</a>
+            <a class="btn btn-sm btn-primary px-3" th:href="@{/register/student}">Sign up</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container auth-main">
+    <div class="row g-5 align-items-center">
+        <section class="col-lg-6 auth-intro">
+            <h1>Navigate Your Future.<br>Own Your Career.</h1>
+            <p class="lead">CareerPilot guides you from the first application to the final offer. Students find the drives they
+                are eligible for, take tests and follow every round. Recruiters review applicants and send offers. The placement
+                office runs the whole season from one place.</p>
+            <ul class="auth-points">
+                <li><i class="bi bi-briefcase"></i>Job openings with eligibility checked for you</li>
+                <li><i class="bi bi-camera-video"></i>Online tests with camera and screen monitoring</li>
+                <li><i class="bi bi-code-slash"></i>Coding practice, aptitude sets and mock interviews</li>
+                <li><i class="bi bi-chat-left-dots"></i>Announcements and a help desk for your questions</li>
+            </ul>
+            <p class="small auth-muted mb-0">For students, recruiters and the training &amp; placement office.</p>
+        </section>
+        <section class="col-lg-6 col-xl-5 offset-xl-1 auth-form">
+            <div th:replace="${content}"></div>
+        </section>
+    </div>
+</main>
+
+<footer class="auth-footer">
+    <div class="container small">CareerPilot · Navigate Your Future. Own Your Career.</div>
+</footer>
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/app.js}"></script>
+<script th:src="@{/js/auth.js}"></script>
+</body>
+</html>

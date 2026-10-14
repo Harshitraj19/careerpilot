@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:3000}
+  # honour X-Forwarded-Proto/Host from a local proxy or tunnel, so redirects stay on https
+  forward-headers-strategy: native
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        name: PLACIFY_SESSION
+        http-only: true
+        same-site: lax
+        secure: ${COOKIE_SECURE:false}
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  application:
+    name: web-ui
+  servlet:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 7MB
+      # Keep the raw multipart body so the BFF can forward uploads unchanged
+      resolve-lazily: true
+  thymeleaf:
+    cache: ${THYMELEAF_CACHE:true}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+placify:
+  web:
+    # Where the API gateway is reachable from this server
+    gateway-url: ${GATEWAY_URL:http://localhost:8080}
+    # Where the browser opens the notification WebSocket (through the gateway)
+    public-ws-url: ${PUBLIC_WS_URL:ws://localhost:8080/ws/notifications}
+    # Seconds between webcam frames sent for analysis during proctored tests
+    proctoring-frame-seconds: ${PROCTORING_FRAME_SECONDS:5}
+    app-name: CareerPilot

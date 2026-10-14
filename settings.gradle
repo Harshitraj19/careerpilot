@@ -1,0 +1,23 @@
+rootProject.name = 'placify'
+
+include 'common'
+include 'web-ui'
+
+[
+    'discovery-server',
+    'gateway',
+    'auth-service',
+    'profile-service',
+    'placement-service',
+    'coding-service',
+    'submission-service',
+    'assessment-service',
+    'proctoring-service',
+    'ai-helper-service',
+    'interview-service',
+    'notification-service',
+    'analytics-service'
+].each { name ->
+    include name
+    project(":${name}").projectDir = file("services/${name}")
+}

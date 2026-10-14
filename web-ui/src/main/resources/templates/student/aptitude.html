@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Aptitude practice', ~{::#page}, 'student-aptitude')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Aptitude practice</h1><div class="sub">Quantitative, logical, verbal and technical MCQs with explanations.</div></div></div>
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="card"><div class="card-body">
+            <div class="row g-2 align-items-end mb-3">
+                <div class="col-sm-4"><label class="form-label small">Topic</label><select class="form-select" id="topic"></select></div>
+                <div class="col-sm-3"><label class="form-label small">Difficulty</label><select class="form-select" id="difficulty">
+                    <option value="">Mixed</option><option>EASY</option><option>MEDIUM</option><option>HARD</option></select></div>
+                <div class="col-sm-2"><label class="form-label small">Questions</label><input class="form-control" type="number" id="count" value="10" min="1" max="30"></div>
+                <div class="col-sm-3"><button class="btn btn-primary w-100" id="start">Start practice</button></div>
+            </div>
+            <div id="quiz"><div class="empty"><i class="bi bi-calculator"></i>Pick a topic and start.</div></div>
+        </div></div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card"><div class="card-header">My accuracy by topic</div><div class="card-body">
+            <div style="height:220px"><canvas id="topic-chart"></canvas></div><div id="topic-stats" class="mt-2"></div></div></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

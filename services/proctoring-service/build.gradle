@@ -1,0 +1,13 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Computer vision: face, eyes, motion, brightness (bundles native libraries)
+    implementation "org.openpnp:opencv:${rootProject.opencvVersion}"
+    // Deep learning in Java: phone detection (YOLOv5) and optional face embeddings
+    implementation platform("ai.djl:bom:${rootProject.djlVersion}")
+    implementation 'ai.djl:api'
+    implementation 'ai.djl.pytorch:pytorch-engine'
+    implementation 'ai.djl.pytorch:pytorch-model-zoo'
+}

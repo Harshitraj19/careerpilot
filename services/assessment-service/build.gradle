@@ -1,0 +1,3 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)

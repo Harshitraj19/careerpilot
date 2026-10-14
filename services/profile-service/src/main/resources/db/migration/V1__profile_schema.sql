@@ -1,0 +1,70 @@
+-- Profile service schema
+
+CREATE TABLE student_profiles (
+    user_id            CHAR(36)      NOT NULL,
+    reg_no             VARCHAR(30)   NOT NULL,
+    name               VARCHAR(255)  NOT NULL,
+    email              VARCHAR(320)  NOT NULL,
+    phone              VARCHAR(20)   NULL,
+    branch             VARCHAR(100)  NOT NULL,
+    batch              INT           NOT NULL,
+    cgpa               DECIMAL(4,2)  NULL,
+    tenth_percentage   DECIMAL(5,2)  NULL,
+    twelfth_percentage DECIMAL(5,2)  NULL,
+    backlogs           INT           NOT NULL DEFAULT 0,
+    skills             TEXT          NULL,
+    certifications     TEXT          NULL,
+    projects_json      TEXT          NULL,
+    internships        TEXT          NULL,
+    achievements       TEXT          NULL,
+    summary            TEXT          NULL,
+    github_url         VARCHAR(500)  NULL,
+    linkedin_url       VARCHAR(500)  NULL,
+    portfolio_url      VARCHAR(500)  NULL,
+    photo_path         VARCHAR(500)  NULL,
+    resume_path        VARCHAR(500)  NULL,
+    resume_original_name VARCHAR(255) NULL,
+    resume_uploaded_at DATETIME(6)   NULL,
+    resume_text        MEDIUMTEXT    NULL,
+    created_at         DATETIME(6)   NOT NULL,
+    updated_at         DATETIME(6)   NOT NULL,
+    PRIMARY KEY (user_id),
+    UNIQUE KEY uk_student_reg_no (reg_no),
+    KEY idx_student_branch_batch (branch, batch)
+);
+
+CREATE TABLE company_profiles (
+    user_id        CHAR(36)     NOT NULL,
+    company_name   VARCHAR(255) NOT NULL,
+    email          VARCHAR(320) NOT NULL,
+    about          TEXT         NULL,
+    industry       VARCHAR(255) NULL,
+    website        VARCHAR(500) NULL,
+    location       VARCHAR(255) NULL,
+    employee_count INT          NULL,
+    logo_path      VARCHAR(500) NULL,
+    created_at     DATETIME(6)  NOT NULL,
+    updated_at     DATETIME(6)  NOT NULL,
+    PRIMARY KEY (user_id)
+);
+
+CREATE TABLE ats_results (
+    id                 BIGINT       NOT NULL AUTO_INCREMENT,
+    student_user_id    CHAR(36)     NOT NULL,
+    job_title          VARCHAR(255) NULL,
+    company_name       VARCHAR(255) NULL,
+    score              INT          NOT NULL,
+    keyword_score      INT          NOT NULL,
+    semantic_score     INT          NOT NULL,
+    content_score      INT          NOT NULL,
+    structure_score    INT          NOT NULL,
+    impact_score       INT          NOT NULL,
+    parseability_score INT          NOT NULL,
+    matched_keywords   TEXT         NULL,
+    missing_keywords   TEXT         NULL,
+    tips               TEXT         NULL,
+    ai_feedback_json   TEXT         NULL,
+    created_at         DATETIME(6)  NOT NULL,
+    PRIMARY KEY (id),
+    KEY idx_ats_student (student_user_id, created_at)
+);

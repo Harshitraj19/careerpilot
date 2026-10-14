@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Problem', ~{::#page}, 'student-problem')}">
+<body>
+<div id="page">
+<input type="hidden" id="question-id" th:value="${questionId}">
+<input type="hidden" id="contest-id" th:value="${contestId}">
+<div class="row g-3">
+    <div class="col-xl-5">
+        <div class="card"><div class="card-body problem-statement" id="statement"></div></div>
+    </div>
+    <div class="col-xl-7">
+        <div class="card mb-3"><div class="card-body">
+            <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
+                <select class="form-select form-select-sm" id="language" style="width:auto"></select>
+                <button class="btn btn-sm btn-light" id="reset-code" title="Reset to template"><i class="bi bi-arrow-counterclockwise"></i></button>
+                <div class="ms-auto d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" id="run"><i class="bi bi-play me-1"></i>Run</button>
+                    <button class="btn btn-sm btn-primary" id="submit"><i class="bi bi-cloud-upload me-1"></i>Submit</button>
+                </div>
+            </div>
+            <div class="editor-box" id="editor"></div>
+            <div class="row g-2 mt-2">
+                <div class="col-md-6"><label class="form-label small mb-1">Custom input</label><textarea class="form-control mono" id="stdin" rows="3"></textarea></div>
+                <div class="col-md-6"><label class="form-label small mb-1">Output</label><pre class="form-control mono mb-0" id="stdout" style="height:86px;overflow:auto"></pre></div>
+            </div>
+        </div></div>
+        <div class="card mb-3"><div class="card-header">Result</div><div class="card-body" id="verdict"><span class="text-muted small">Submit to see the verdict on all test cases.</span></div></div>
+        <div class="card" id="tutor-card"><div class="card-header d-flex justify-content-between">AI tutor <span class="small text-muted" id="hint-level"></span></div><div class="card-body">
+            <div class="chat-box mb-2" id="tutor-chat" style="height:260px"></div>
+            <form id="tutor-form" class="d-flex gap-2">
+                <input class="form-control" id="tutor-q" placeholder="Ask for a hint, explain an error, or check your approach..." maxlength="2000" required>
+                <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i></button>
+            </form>
+            <div class="form-text">The tutor sees the problem and your current code. It is disabled in tests and contests.</div>
+        </div></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // LLM features written in Java with Spring AI (Gemini through its OpenAI-compatible API, or a local Ollama)
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+    // Sentence embeddings for semantic similarity, run inside the JVM with DJL
+    implementation platform("ai.djl:bom:${rootProject.djlVersion}")
+    implementation 'ai.djl:api'
+    implementation 'ai.djl.pytorch:pytorch-engine'
+    implementation 'ai.djl.huggingface:tokenizers'
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Manage job', ~{::#page}, 'job-manage')}">
+<body>
+<div id="page">
+<input type="hidden" id="job-id" th:value="${jobId}">
+<div class="page-head" id="head"></div>
+<ul class="nav nav-tabs mb-3" id="tabs">
+    <li class="nav-item"><a class="nav-link active" href="#" data-tab="applicants">Applicants</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="rounds">Rounds &amp; results</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="slots">Interview slots</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="selected">Selected &amp; offers</a></li>
+</ul>
+<div data-pane="applicants">
+    <div class="d-flex flex-wrap gap-2 mb-2">
+        <select class="form-select form-select-sm" id="app-status" style="width:auto"><option value="">All statuses</option><option>APPLIED</option><option>SHORTLISTED</option><option>IN_PROCESS</option><option>SELECTED</option><option>REJECTED</option></select>
+        <select class="form-select form-select-sm" id="app-sort" style="width:auto"><option value="rank">Sort: AI rank</option><option value="cgpa">Sort: CGPA</option><option value="date">Sort: applied</option></select>
+        <div class="ms-auto d-flex gap-2"><button class="btn btn-sm btn-success" id="shortlist">Shortlist selected</button><button class="btn btn-sm btn-outline-danger" id="reject">Reject selected</button></div>
+    </div>
+    <div class="card"><div class="card-body p-0" id="applicants"></div></div>
+</div>
+<div data-pane="rounds" class="d-none"><div id="round-list"></div></div>
+<div data-pane="slots" class="d-none">
+    <form class="card mb-3" id="slot-form"><div class="card-body row g-2 align-items-end">
+        <div class="col-md-3"><label class="form-label small">Round</label><select class="form-select" name="roundId" id="slot-round"></select></div>
+        <div class="col-md-3"><label class="form-label small">From</label><input class="form-control" type="datetime-local" name="startTime" required></div>
+        <div class="col-md-3"><label class="form-label small">To</label><input class="form-control" type="datetime-local" name="endTime" required></div>
+        <div class="col-md-1"><label class="form-label small">Minutes</label><input class="form-control" type="number" name="durationMinutes" value="30" min="5"></div>
+        <div class="col-md-1"><label class="form-label small">Gap</label><input class="form-control" type="number" name="gapMinutes" value="5" min="0"></div>
+        <div class="col-md-1"><button class="btn btn-primary w-100" type="submit">Create</button></div>
+        <div class="col-md-6"><input class="form-control" name="location" placeholder="Room / meeting link"></div>
+    </div></form>
+    <div class="card"><div class="card-body p-0" id="slots"></div></div>
+</div>
+<div data-pane="selected" class="d-none"><div class="card"><div class="card-body p-0" id="selected"></div></div></div>
+</div>
+</body>
+</html>

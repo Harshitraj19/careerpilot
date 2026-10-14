@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/auth :: auth('Log in', ~{::#page})}">
+<body>
+<div id="page">
+    <div class="card auth-card">
+        <div class="card-body p-4">
+            <ul class="nav nav-pills nav-fill portal-tabs mb-4 bg-light rounded-3 p-1">
+                <li class="nav-item"><a class="nav-link" th:classappend="${portal == 'STUDENT'} ? 'active'" th:href="@{/login(portal='STUDENT')}"><i class="bi bi-mortarboard me-1"></i>Student</a></li>
+                <li class="nav-item"><a class="nav-link" th:classappend="${portal == 'COMPANY'} ? 'active'" th:href="@{/login(portal='COMPANY')}"><i class="bi bi-building me-1"></i>Company</a></li>
+                <li class="nav-item"><a class="nav-link" th:classappend="${portal == 'TPO'} ? 'active'" th:href="@{/login(portal='TPO')}"><i class="bi bi-person-badge me-1"></i>TPO</a></li>
+                <li class="nav-item"><a class="nav-link" th:classappend="${portal == 'ADMIN'} ? 'active'" th:href="@{/login(portal='ADMIN')}"><i class="bi bi-shield-lock me-1"></i>Admin</a></li>
+            </ul>
+
+            <h2 class="h5 fw-bold mb-1" th:switch="${portal}">
+                <span th:case="'STUDENT'">Student login</span>
+                <span th:case="'COMPANY'">Recruiter login</span>
+                <span th:case="'TPO'">Placement office login</span>
+                <span th:case="*">Administrator login</span>
+            </h2>
+            <p class="text-muted small mb-3" th:switch="${portal}">
+                <span th:case="'STUDENT'">Use your registration number. New here? Create your account below, or use the temporary password from the placement office.</span>
+                <span th:case="'COMPANY'">Use the e-mail you registered with. New recruiter? Register below.</span>
+                <span th:case="'TPO'">Use your employee ID.</span>
+                <span th:case="*">Restricted to system administrators.</span>
+            </p>
+
+            <div th:if="${param.logout}" class="alert alert-info py-2 small">You have been logged out.</div>
+            <div th:if="${param.expired}" class="alert alert-warning py-2 small">Your session ended (timed out, or you logged in from another device). Please log in again.</div>
+            <div th:if="${info}" class="alert alert-success py-2 small" th:text="${info}"></div>
+            <div th:if="${error}" class="alert alert-danger py-2 small" th:text="${error}"></div>
+            <div th:if="${captcha.unavailable}" class="alert alert-warning py-2 small">The CareerPilot server is not reachable right now.</div>
+
+            <form th:action="@{/login}" method="post" autocomplete="on" novalidate>
+                <input type="hidden" name="portal" th:value="${portal}">
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold" for="loginId" th:switch="${portal}">
+                        <span th:case="'STUDENT'">Registration number</span>
+                        <span th:case="'COMPANY'">E-mail</span>
+                        <span th:case="'TPO'">Employee ID</span>
+                        <span th:case="*">Username</span>
+                    </label>
+                    <input class="form-control form-control-lg" id="loginId" name="loginId" th:value="${loginId}" required
+                           th:attr="type=${portal == 'COMPANY' ? 'email' : 'text'},placeholder=${portal == 'STUDENT' ? 'e.g. 22BCE1234' : portal == 'COMPANY' ? 'hr@company.com' : portal == 'TPO' ? 'e.g. TPO1001' : 'admin'}"
+                           autocomplete="username" autofocus>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold" for="password">Password</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-lg" type="password" id="password" name="password" required autocomplete="current-password">
+                        <button class="btn btn-outline-secondary" type="button" data-toggle-password="#password" aria-label="Show password"><i class="bi bi-eye"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3" th:if="${captcha.enabled}">
+                    <label class="form-label small fw-semibold" for="captchaAnswer">Enter the characters shown</label>
+                    <div class="d-flex gap-2 align-items-center">
+                        <img class="captcha-img" id="captcha-img" th:src="${captcha.image}" alt="captcha">
+                        <button class="btn btn-light" type="button" id="captcha-refresh" title="New captcha" aria-label="New captcha"><i class="bi bi-arrow-clockwise"></i></button>
+                        <input class="form-control" id="captchaAnswer" name="captchaAnswer" maxlength="8" required autocomplete="off">
+                    </div>
+                    <input type="hidden" name="captchaId" id="captchaId" th:value="${captcha.id}">
+                </div>
+                <button class="btn btn-primary btn-lg w-100" type="submit"><i class="bi bi-box-arrow-in-right me-1"></i>Log in</button>
+            </form>
+
+            <div class="d-flex justify-content-between mt-3 small">
+                <a th:href="@{/forgot-password(portal=${portal})}">Forgot password?</a>
+                <span th:if="${portal == 'COMPANY'}">New recruiter? <a th:href="@{/register/company}">Register your company</a></span>
+                <span th:if="${portal == 'STUDENT'}">New here? <a th:href="@{/register/student}">Sign up</a></span>
+            </div>
+        </div>
+    </div>
+    <p class="text-center auth-muted small mt-3 mb-0">
+        Accounts lock for 15 minutes after repeated failed attempts. Logging in elsewhere ends your other session.
+    </p>
+</div>
+</body>
+</html>

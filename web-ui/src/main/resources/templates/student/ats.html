@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Resume ATS check', ~{::#page}, 'student-ats')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Resume ATS check</h1><div class="sub">Upload a job description and a resume to see how an applicant tracking system matches them.</div></div></div>
+<form id="ats-form" class="row g-3">
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header"><span class="badge rounded-pill text-bg-primary me-1">1</span> Job description</div><div class="card-body">
+        <div class="row g-2 mb-2">
+            <div class="col-sm-6"><label class="form-label small">Job title</label><input class="form-control" name="jobTitle" maxlength="255" placeholder="e.g. Backend Developer Intern"></div>
+            <div class="col-sm-6"><label class="form-label small">Company</label><input class="form-control" name="companyName" maxlength="255" placeholder="e.g. NexaRetail Tech"></div>
+        </div>
+        <ul class="nav nav-pills nav-sm mb-2" role="tablist">
+            <li class="nav-item"><button class="nav-link active py-1" type="button" data-jd="file">Upload file</button></li>
+            <li class="nav-item"><button class="nav-link py-1" type="button" data-jd="text">Paste text</button></li>
+            <li class="nav-item"><button class="nav-link py-1" type="button" data-jd="job">From a job opening</button></li>
+        </ul>
+        <div id="jd-file"><input class="form-control" type="file" name="jobDescriptionFile" accept=".pdf,.docx,.txt">
+            <div class="form-text">PDF, Word (.docx) or text file, up to 5 MB.</div></div>
+        <div id="jd-text" class="d-none"><textarea class="form-control" name="jobDescription" rows="9" maxlength="20000" placeholder="Paste the full job description: responsibilities, required skills, qualifications"></textarea>
+            <div class="form-text"><span id="jd-count">0</span> characters (at least 50).</div></div>
+        <div id="jd-job" class="d-none"><select class="form-select" id="jd-job-select"><option value="">Choose an open job...</option></select>
+            <div class="form-text">Uses the full description of a job posted on CareerPilot.</div></div>
+    </div></div></div>
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header"><span class="badge rounded-pill text-bg-primary me-1">2</span> Resume</div><div class="card-body">
+        <div class="form-check mb-2"><input class="form-check-input" type="radio" name="resumeSource" id="rs-profile" value="profile" checked>
+            <label class="form-check-label" for="rs-profile">Use the resume on my profile <span class="small text-muted" id="profile-resume"></span></label></div>
+        <div class="form-check mb-2"><input class="form-check-input" type="radio" name="resumeSource" id="rs-file" value="file">
+            <label class="form-check-label" for="rs-file">Upload a different resume for this check</label></div>
+        <div id="resume-file" class="d-none mb-2"><input class="form-control" type="file" name="resumeFile" accept=".pdf,.docx">
+            <div class="form-text">PDF or Word (.docx). It is used only for this check and is not saved to your profile.</div></div>
+        <hr>
+        <div class="form-check mb-3"><input class="form-check-input" type="checkbox" name="useAi" id="useAi" checked>
+            <label class="form-check-label" for="useAi">Also get written feedback (strengths, weaknesses, suggestions)</label></div>
+        <button class="btn btn-primary w-100" type="submit"><i class="bi bi-file-earmark-check me-1"></i>Compare and score</button>
+        <div class="small text-muted mt-2">The score combines keyword match (35%), meaning similarity (20%), section structure (15%),
+            content overlap (10%), measurable impact (10%) and how cleanly the file can be parsed (10%), like common ATS tools.</div>
+    </div></div></div>
+</form>
+<div class="row g-3 mt-0">
+    <div class="col-lg-8"><div id="ats-result"><div class="card"><div class="card-body">
+        <div class="empty"><i class="bi bi-file-earmark-text"></i>Your score, matched and missing keywords and tips appear here.</div></div></div></div></div>
+    <div class="col-lg-4"><div class="card"><div class="card-header">History</div><div class="card-body p-0" id="ats-history"></div></div></div>
+</div>
+</div>
+</body>
+</html>

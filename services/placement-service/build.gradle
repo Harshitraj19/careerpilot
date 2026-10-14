@@ -1,0 +1,12 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Offer-letter file type check
+    implementation "org.apache.tika:tika-core:${rootProject.tikaVersion}"
+    // Placement certificate PDF + QR code
+    implementation "com.github.librepdf:openpdf:${rootProject.openpdfVersion}"
+    implementation "com.google.zxing:core:${rootProject.zxingVersion}"
+    implementation "com.google.zxing:javase:${rootProject.zxingVersion}"
+}

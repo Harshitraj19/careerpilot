@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Dashboard', ~{::#page}, 'student-dashboard')}">
+<body>
+<div id="page">
+<div class="page-head">
+    <div><h1>Welcome back, <span th:text="${me.name}">Student</span></h1>
+        <div class="sub">Your placement readiness at a glance.</div></div>
+    <a class="btn btn-outline-primary" th:href="@{/student/profile}"><i class="bi bi-person-vcard me-1"></i>Update profile</a>
+</div>
+<div class="row g-3 mb-3" id="stats"></div>
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="card h-100"><div class="card-header d-flex justify-content-between align-items-center">Placement readiness
+            <button class="btn btn-sm btn-light" id="refresh-readiness" title="Recalculate"><i class="bi bi-arrow-clockwise"></i></button></div>
+            <div class="card-body" id="readiness"></div></div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card h-100"><div class="card-header">Placement chance <span class="badge text-bg-light ms-1">ML prediction</span></div>
+            <div class="card-body" id="prediction"></div></div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card h-100"><div class="card-header">What to do next</div>
+            <div class="card-body" id="suggestions"></div></div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100"><div class="card-header d-flex justify-content-between">Recommended openings <a class="small" th:href="@{/student/jobs}">All jobs</a></div>
+            <div class="card-body p-0" id="jobs"></div></div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100"><div class="card-header d-flex justify-content-between">Upcoming events <a class="small" th:href="@{/student/calendar}">Calendar</a></div>
+            <div class="card-body p-0" id="events"></div></div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100"><div class="card-header">Skill radar</div>
+            <div class="card-body"><div style="height:260px"><canvas id="radar"></canvas></div></div></div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100"><div class="card-header">Your next coding problem</div>
+            <div class="card-body" id="next-problem"></div></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

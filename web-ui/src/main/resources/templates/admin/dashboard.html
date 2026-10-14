@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('System overview', ~{::#page}, 'admin-dashboard')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>System overview</h1><div class="sub">Accounts, security events and platform health.</div></div></div>
+<div class="row g-3 mb-3" id="stats"></div>
+<div class="row g-3">
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header">Top actions (7 days)</div><div class="card-body"><div style="height:280px"><canvas id="actions"></canvas></div></div></div></div>
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header">Services</div><div class="card-body p-0" id="services"></div></div></div>
+</div>
+</div>
+</body>
+</html>

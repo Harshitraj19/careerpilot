@@ -1,0 +1,80 @@
+# Settings shared by every business service.
+# Each service imports this file with: spring.config.import: classpath:placify-common.yml
+spring:
+  autoconfigure:
+    # Identity comes from the gateway headers; no local user store
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  datasource:
+    username: ${DB_USER:placify}
+    password: ${DB_PASSWORD:placify}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USER:guest}
+    password: ${RABBIT_PASSWORD:guest}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+
+placify:
+  security:
+    gateway-secret: ${GATEWAY_SECRET:dev-gateway-secret-change-me}
+    internal-secret: ${INTERNAL_SECRET:dev-internal-secret-change-me}
+  storage:
+    root: ${STORAGE_ROOT:./storage}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.placify: INFO
+
+# Demo data (users, profiles, jobs, problems, MCQs, experiences) created on first start
+placify.demo.enabled: ${DEMO_DATA:false}

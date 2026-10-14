@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Job details', ~{::#page}, 'student-job')}">
+<body>
+<div id="page">
+<input type="hidden" id="job-id" th:value="${id}">
+<div id="job-head" class="page-head"></div>
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="card mb-3"><div class="card-header">Compensation</div><div class="card-body" id="job-pay"></div></div>
+        <div class="card mb-3"><div class="card-header">About the role</div><div class="card-body" id="job-body"></div></div>
+        <div class="card"><div class="card-header">Selection process</div><div class="card-body" id="job-rounds"></div></div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-3"><div class="card-header">Eligibility</div><div class="card-body" id="eligibility"></div></div>
+        <div class="card"><div class="card-header">Your match <span class="badge text-bg-light">AI</span></div><div class="card-body" id="match">
+            <button class="btn btn-outline-primary w-100" id="load-match"><i class="bi bi-cpu me-1"></i>Analyse my fit</button>
+        </div></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

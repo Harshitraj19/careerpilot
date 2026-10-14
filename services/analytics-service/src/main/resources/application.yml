@@ -1,0 +1,20 @@
+server:
+  port: ${PORT:8091}
+
+spring:
+  application:
+    name: analytics-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_analytics?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
+placify:
+  analytics:
+    # Readiness scores older than this are recomputed on request
+    readiness-cache-minutes: 60
+    # A student below this readiness (and not placed) is "at risk"
+    at-risk-threshold: 40
+    # Synthetic history used to train the prediction model before real seasons are recorded
+    synthetic-history-size: 800
+    audit-retention-days: 365

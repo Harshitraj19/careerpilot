@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Coding questions', ~{::#page}, 'questions')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Coding questions</h1><div class="sub">Practice problems and private test-only problems with hidden test cases.</div></div>
+    <a class="btn btn-primary" id="new-q"><i class="bi bi-plus-lg me-1"></i>New question</a></div>
+<div class="card"><div class="card-body">
+    <div class="row g-2 mb-3"><div class="col-md-6"><input class="form-control" id="q" placeholder="Search"></div>
+        <div class="col-md-3"><select class="form-select" id="difficulty"><option value="">Any difficulty</option><option>EASY</option><option>MEDIUM</option><option>HARD</option></select></div></div>
+    <div id="list"></div><div id="pager" class="mt-2"></div>
+</div></div>
+</div>
+</body>
+</html>

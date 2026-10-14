@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Interview experiences', ~{::#page}, 'student-experiences')}">
+<body>
+<div id="page">
+<div class="page-head">
+    <div><h1>Interview experiences</h1><div class="sub">Learn from seniors - and give back after your own interviews.</div></div>
+    <button class="btn btn-primary" id="write"><i class="bi bi-pencil-square me-1"></i>Share your experience</button>
+</div>
+<ul class="nav nav-tabs mb-3">
+    <li class="nav-item"><a class="nav-link active" href="#" data-tab="browse">Browse</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="mine">My submissions</a></li>
+</ul>
+<div data-pane="browse">
+    <div class="d-flex gap-2 mb-3">
+        <input class="form-control" id="exp-q" placeholder="Search">
+        <select class="form-select" id="exp-company" style="max-width:260px"><option value="">All companies</option></select>
+    </div>
+    <div id="exp-list"></div><div id="exp-pager" class="mt-2"></div>
+</div>
+<div data-pane="mine" class="d-none"><div class="card"><div class="card-body p-0" id="my-exp"></div></div></div>
+</div>
+</body>
+</html>

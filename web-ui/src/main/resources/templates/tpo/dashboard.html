@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Placement office', ~{::#page}, 'tpo-dashboard')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Placement office dashboard</h1><div class="sub">Season overview, branch-wise placement and students who need help.</div></div>
+    <div class="d-flex gap-2"><select class="form-select" id="batch" style="width:auto"><option value="">All batches</option></select>
+        <a class="btn btn-outline-primary" th:href="@{/tpo/reports}"><i class="bi bi-file-earmark-bar-graph me-1"></i>Reports</a></div></div>
+<div class="row g-3 mb-3" id="stats"></div>
+<div class="row g-3">
+    <div class="col-lg-8"><div class="card h-100"><div class="card-header">Branch-wise placement</div><div class="card-body"><div style="height:300px"><canvas id="branch-chart"></canvas></div></div></div></div>
+    <div class="col-lg-4"><div class="card h-100"><div class="card-header">Offers by tier</div><div class="card-body"><div style="height:300px"><canvas id="tier-chart"></canvas></div></div></div></div>
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header">Offers per month</div><div class="card-body"><div style="height:260px"><canvas id="month-chart"></canvas></div></div></div></div>
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header">Top recruiters</div><div class="card-body p-0" id="recruiters"></div></div></div>
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header">Skills in demand</div><div class="card-body" id="skills"></div></div></div>
+    <div class="col-lg-6"><div class="card h-100"><div class="card-header">Pending actions</div><div class="card-body" id="pending"></div></div></div>
+</div>
+</div>
+</body>
+</html>

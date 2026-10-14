@@ -1,0 +1,13 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Placement-chance prediction with a logistic-regression model trained in Java (Oracle Tribuo)
+    implementation "org.tribuo:tribuo-core:${rootProject.tribuoVersion}"
+    implementation "org.tribuo:tribuo-classification-core:${rootProject.tribuoVersion}"
+    implementation "org.tribuo:tribuo-classification-sgd:${rootProject.tribuoVersion}"
+    // Reports
+    implementation "com.github.librepdf:openpdf:${rootProject.openpdfVersion}"
+    implementation "org.apache.poi:poi-ooxml:${rootProject.poiVersion}"
+}

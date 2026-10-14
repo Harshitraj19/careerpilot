@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Audit log', ~{::#page}, 'admin-audit')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Audit log</h1><div class="sub">Every security-relevant action across all services.</div></div>
+    <button class="btn btn-outline-primary" id="export"><i class="bi bi-download me-1"></i>Export CSV</button></div>
+<ul class="nav nav-tabs mb-3"><li class="nav-item"><a class="nav-link active" href="#" data-tab="audit">Actions</a></li><li class="nav-item"><a class="nav-link" href="#" data-tab="logins">Logins</a></li></ul>
+<div data-pane="audit"><form class="row g-2 mb-3" id="filters">
+    <div class="col-md-2"><input class="form-control" name="service" placeholder="Service"></div>
+    <div class="col-md-2"><input class="form-control" name="action" placeholder="Action"></div>
+    <div class="col-md-2"><input class="form-control" name="actor" placeholder="User ID"></div>
+    <div class="col-md-2"><select class="form-select" name="success"><option value="">Any result</option><option value="true">Success</option><option value="false">Failed</option></select></div>
+    <div class="col-md-2"><input class="form-control" type="date" name="from"></div>
+    <div class="col-md-2"><input class="form-control" type="date" name="to"></div>
+</form><div class="card"><div class="card-body p-0" id="list"></div></div><div id="pager" class="mt-2"></div></div>
+<div data-pane="logins" class="d-none"><div class="card"><div class="card-body p-0" id="logins"></div></div><div id="login-pager" class="mt-2"></div></div>
+</div>
+</body>
+</html>

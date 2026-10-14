@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Company approvals', ~{::#page}, 'tpo-companies')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Company approvals</h1><div class="sub">Recruiters can log in only after you approve their registration.</div></div></div>
+<div class="card mb-3"><div class="card-header">Waiting for approval</div><div class="card-body p-0" id="pending"></div></div>
+<div class="card"><div class="card-header">All companies</div><div class="card-body p-0" id="all"></div></div>
+</div>
+</body>
+</html>

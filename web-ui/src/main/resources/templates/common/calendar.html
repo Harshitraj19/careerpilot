@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Calendar', ~{::#page}, 'calendar')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Placement calendar</h1><div class="sub">Which company visits the campus on which day, and why: pre-placement talks, tests, interviews, drives and workshops.</div></div>
+    <button class="btn btn-primary staff-only" id="new-event"><i class="bi bi-plus-lg me-1"></i>New event</button></div>
+<div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <button class="btn btn-light" id="prev-month" aria-label="Previous month"><i class="bi bi-chevron-left"></i></button>
+    <h5 class="mb-0" id="month-label" style="min-width:180px;text-align:center"></h5>
+    <button class="btn btn-light" id="next-month" aria-label="Next month"><i class="bi bi-chevron-right"></i></button>
+    <button class="btn btn-outline-secondary btn-sm" id="this-month">Today</button>
+    <div class="ms-auto d-flex flex-wrap gap-2 small" id="legend"></div>
+</div>
+<div class="row g-3">
+    <div class="col-xl-8"><div class="card"><div class="card-body p-2"><div class="cal-grid" id="cal-grid"></div></div></div></div>
+    <div class="col-xl-4"><div class="card"><div class="card-header" id="day-label">Selected day</div><div class="card-body" id="day-events"></div></div></div>
+    <div class="col-12"><div class="card"><div class="card-header">All events this month</div><div class="card-body p-0" id="events"></div></div></div>
+</div>
+</div>
+</body>
+</html>

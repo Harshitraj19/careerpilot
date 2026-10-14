@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Interview scorecards', ~{::#page}, 'interview-board')}">
+<body>
+<div id="page">
+<input type="hidden" id="round-id" th:value="${roundId}">
+<div class="page-head" id="head"></div>
+<div class="card mb-3"><div class="card-header">Waiting candidates</div><div class="card-body p-0" id="pending"></div></div>
+<div class="card"><div class="card-header">Evaluated</div><div class="card-body p-0" id="evaluated"></div></div>
+</div>
+</body>
+</html>

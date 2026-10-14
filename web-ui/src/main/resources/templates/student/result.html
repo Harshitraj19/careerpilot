@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Test result', ~{::#page}, 'student-result')}">
+<body>
+<div id="page">
+<input type="hidden" id="attempt-id" th:value="${attemptId}">
+<div id="result"></div>
+</div>
+</body>
+</html>

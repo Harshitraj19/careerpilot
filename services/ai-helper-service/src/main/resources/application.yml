@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:8088}
+
+spring:
+  application:
+    name: ai-helper-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_ai?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  ai:
+    openai:
+      # Default: Google Gemini through its OpenAI-compatible endpoint.
+      # For a local model use Ollama: base-url http://localhost:11434 and model llama3.1
+      api-key: ${AI_API_KEY:not-configured}
+      base-url: ${AI_BASE_URL:https://generativelanguage.googleapis.com/v1beta/openai/}
+      chat:
+        completions-path: ${AI_COMPLETIONS_PATH:/chat/completions}
+        options:
+          model: ${AI_MODEL:gemini-2.5-flash}
+          temperature: 0.4
+    # embeddings are computed locally with DJL, not through the API
+    model:
+      embedding: none
+
+placify:
+  ai:
+    embedding-model-url: ${EMBEDDING_MODEL_URL:djl://ai.djl.huggingface.pytorch/sentence-transformers/all-MiniLM-L6-v2}
+    embeddings-enabled: ${EMBEDDINGS_ENABLED:true}
+    tutor-history-messages: 20
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      llm:
+        base-config: default
+        slow-call-duration-threshold: 45s

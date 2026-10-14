@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Contest', ~{::#page}, 'student-contest')}">
+<body>
+<div id="page">
+<input type="hidden" id="contest-id" th:value="${id}">
+<div class="page-head" id="contest-head"></div>
+<div class="row g-3">
+    <div class="col-lg-7"><div class="card"><div class="card-header">Problems</div><div class="card-body p-0" id="contest-problems"></div></div></div>
+    <div class="col-lg-5"><div class="card"><div class="card-header d-flex justify-content-between">Live leaderboard <span class="badge text-bg-success d-none" id="live">LIVE</span></div>
+        <div class="card-body p-0" id="board"></div></div></div>
+</div>
+</div>
+</body>
+</html>

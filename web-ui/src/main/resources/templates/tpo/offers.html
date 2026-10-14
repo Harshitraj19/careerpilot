@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Offer verification', ~{::#page}, 'tpo-offers')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Offer verification</h1><div class="sub">Verify accepted and off-campus offers. Verified offers count as placed and produce a QR-verifiable certificate.</div></div>
+    <select class="form-select" id="status" style="width:auto"><option value="">All</option><option value="ACCEPTED" selected>Accepted (to verify)</option><option>ISSUED</option><option>VERIFIED</option><option>REJECTED</option><option>DECLINED</option></select></div>
+<div class="card"><div class="card-body p-0" id="offers"></div></div>
+</div>
+</body>
+</html>

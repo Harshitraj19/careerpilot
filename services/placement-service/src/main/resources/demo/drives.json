@@ -1,0 +1,318 @@
+[
+  {
+    "companyId": "00000000-0000-4000-8000-000000000201", "title": "Software Development Engineer", "jobType": "FULL_TIME",
+    "ctcLpa": 12.5, "tier": "DREAM", "location": "Bengaluru (hybrid)", "skills": "Java, Spring Boot, SQL, Data Structures, REST APIs, Git",
+    "minCgpa": 7.0, "branches": "CSE, IT", "maxBacklogs": 0, "deadlineDays": 14,
+    "description": "About TechNova\nTechNova builds cloud-native enterprise software for banks and government clients. Our platforms process 40 million transactions a day.\n\nThe role\nYou will join a product squad that designs, builds and runs Java microservices used by millions of citizens.\n\nResponsibilities\n• Build REST APIs and event-driven services with Spring Boot, MySQL and RabbitMQ\n• Write clean, tested code and take part in design and code reviews\n• Own features end to end: design, implementation, deployment on Kubernetes and monitoring\n• Fix production issues together with the on-call engineer\n\nWhat we look for\n• Strong data structures, algorithms and OOP fundamentals\n• Good SQL and an understanding of indexes and transactions\n• At least one project that uses Java or another backend language\n\nGood to have\n• Docker, Kubernetes or any cloud platform\n• Contributions to open source\n\nWork mode: hybrid, 3 days a week in the Bengaluru office. No service bond.",
+    "salary": [
+      {"component": "Base pay", "amount": "₹9,60,000", "note": "per annum, paid monthly"},
+      {"component": "Performance bonus", "amount": "₹96,000", "note": "up to 10% of base, paid yearly"},
+      {"component": "Joining bonus", "amount": "₹75,000", "note": "one time, with the first salary"},
+      {"component": "Relocation allowance", "amount": "₹40,000", "note": "one time"},
+      {"component": "Insurance and benefits", "amount": "₹79,000", "note": "family health cover, meal card, internet"}
+    ],
+    "rounds": [
+      {"name": "Online assessment", "type": "APTITUDE_TEST", "day": 15, "hour": 10, "cutoff": 60, "description": "Aptitude and technical MCQs plus one coding problem, 60 minutes, proctored."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 18, "hour": 10, "description": "DSA problem solving, OOP, DBMS and a deep dive into one of your projects."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 19, "hour": 14, "description": "Culture fit, communication and career goals."}
+    ],
+    "events": [
+      {"title": "TechNova pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 2, "hour": 10, "hours": 2, "location": "Main auditorium", "description": "Meet the engineering team, learn about the roles, salary and selection process. Q&A at the end."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000201", "title": "Software Engineering Intern (Summer)", "jobType": "INTERNSHIP",
+    "stipend": 50000, "tier": "NORMAL", "location": "Bengaluru (on site)", "skills": "Java, Python, Data Structures, Algorithms, Git",
+    "minCgpa": 7.5, "branches": "CSE, IT, ECE", "maxBacklogs": 0, "deadlineDays": 12,
+    "description": "About the internship\nAn 8-week summer internship (May-July) in one of TechNova's product squads. Every intern ships a real feature to production with a mentor.\n\nWhat you will do\n• Pick up a scoped feature or tool and deliver it end to end\n• Write unit and integration tests, and present your work in a demo day\n• Learn how a large engineering organisation designs, reviews and releases software\n\nWhat we look for\n• Solid programming skills in Java, Python or C++\n• Good grip on data structures and algorithms\n• Curiosity and clear communication\n\nTop performers receive a pre-placement interview for the full-time SDE role.",
+    "salary": [
+      {"component": "Stipend", "amount": "₹50,000", "note": "per month, for 2 months"},
+      {"component": "Housing allowance", "amount": "₹15,000", "note": "per month, for outstation interns"},
+      {"component": "Equipment", "amount": "Laptop", "note": "provided for the duration of the internship"}
+    ],
+    "rounds": [
+      {"name": "Coding test", "type": "CODING_TEST", "day": 13, "hour": 11, "cutoff": 50, "description": "Two coding problems and technical MCQs, 60 minutes, proctored."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 16, "hour": 11, "description": "One problem-solving interview with a senior engineer."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000202", "title": "Data Analyst Intern", "jobType": "INTERNSHIP_WITH_PPO",
+    "ctcLpa": 8.0, "stipend": 40000, "tier": "NORMAL", "location": "Hyderabad", "skills": "Python, SQL, Statistics, Excel, Machine Learning",
+    "minCgpa": 6.5, "maxBacklogs": 1, "deadlineDays": 10,
+    "description": "Six-month internship with a pre-placement offer. Analyse payment data with SQL and Python, build dashboards and help the risk team detect fraud patterns.\n\nResponsibilities\n• Write SQL to explore large payment datasets and build weekly business reports\n• Build Power BI / Python dashboards for the risk and operations teams\n• Help data scientists prepare features for fraud-detection models\n\nWhat we look for\n• Good SQL and Python (pandas)\n• Basic statistics: distributions, hypothesis testing, correlation\n• Curiosity about how payments and fraud work\n\nInterns who perform well are converted to a full-time Data Analyst role with the CTC below.",
+    "salary": [
+      {"component": "Internship stipend", "amount": "₹40,000", "note": "per month, 6 months"},
+      {"component": "PPO - base pay", "amount": "₹6,80,000", "note": "per annum, after conversion"},
+      {"component": "PPO - variable pay", "amount": "₹80,000", "note": "per annum, performance linked"},
+      {"component": "PPO - benefits", "amount": "₹40,000", "note": "health insurance, meal card"}
+    ],
+    "rounds": [
+      {"name": "Aptitude test", "type": "APTITUDE_TEST", "day": 11, "hour": 10, "cutoff": 50, "description": "Quantitative, logical and SQL MCQs, 45 minutes, proctored."},
+      {"name": "Case study discussion", "type": "GROUP_DISCUSSION", "day": 13, "hour": 10, "description": "Groups of 8 discuss a fraud-analytics case."},
+      {"name": "Final interview", "type": "TECHNICAL_INTERVIEW", "day": 14, "hour": 14, "description": "SQL on a whiteboard and a discussion of your analysis approach."}
+    ],
+    "events": [
+      {"title": "FinEdge Analytics pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 4, "hour": 15, "hours": 1, "location": "Seminar hall 2", "description": "How FinEdge fights payment fraud with data, and what interns work on."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000202", "title": "Associate Data Engineer", "jobType": "FULL_TIME",
+    "ctcLpa": 9.0, "tier": "NORMAL", "location": "Hyderabad", "skills": "Python, SQL, Spark, ETL, Airflow, Cloud",
+    "minCgpa": 7.0, "branches": "CSE, IT, ECE", "maxBacklogs": 0, "deadlineDays": 16,
+    "description": "The role\nBuild and run the data pipelines that feed FinEdge's fraud models and customer dashboards.\n\nResponsibilities\n• Develop batch and streaming ETL pipelines with Python, Spark and Airflow\n• Model data in the warehouse and keep data quality high\n• Optimise slow queries and jobs, and automate data checks\n\nWhat we look for\n• Strong SQL and Python\n• Understanding of joins, indexing, partitioning and normalisation\n• A project involving data processing or a database-backed application\n\nGood to have: Spark, Kafka, AWS or GCP.",
+    "salary": [
+      {"component": "Base pay", "amount": "₹7,50,000", "note": "per annum"},
+      {"component": "Variable pay", "amount": "₹60,000", "note": "per annum, performance linked"},
+      {"component": "Joining bonus", "amount": "₹50,000", "note": "one time"},
+      {"component": "Insurance and benefits", "amount": "₹40,000", "note": "health cover, learning budget"}
+    ],
+    "rounds": [
+      {"name": "Online test", "type": "APTITUDE_TEST", "day": 17, "hour": 10, "cutoff": 55, "description": "Aptitude, SQL and Python MCQs plus one coding problem."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 20, "hour": 10, "description": "SQL, Python and pipeline design."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 21, "hour": 15, "description": "Motivation and team fit."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000203", "title": "Cloud Engineer", "jobType": "FULL_TIME",
+    "ctcLpa": 16.0, "tier": "DREAM", "location": "Bengaluru", "skills": "Linux, Networking, Kubernetes, Docker, Go, Python",
+    "minCgpa": 7.5, "branches": "CSE, IT", "maxBacklogs": 0, "deadlineDays": 18,
+    "description": "About CloudPeak\nCloudPeak runs a managed Kubernetes and serverless platform used by more than 4,000 product teams.\n\nThe role\nAs a Cloud Engineer you will build and operate the systems that keep thousands of customer clusters healthy.\n\nResponsibilities\n• Build automation and controllers in Go and Python\n• Improve reliability, observability and cost of the platform\n• Take part in a fair on-call rotation after your first 3 months\n\nWhat we look for\n• Strong Linux and networking fundamentals (TCP/IP, DNS, HTTP)\n• Solid programming skills and data structures\n• Hands-on experience with Docker; Kubernetes is a plus\n\nYou get a home-office budget and 4 weeks of paid leave.",
+    "salary": [
+      {"component": "Base pay", "amount": "₹12,00,000", "note": "per annum"},
+      {"component": "Performance bonus", "amount": "₹1,20,000", "note": "per annum"},
+      {"component": "Stock options (ESOP)", "amount": "₹2,00,000", "note": "per year, ₹8,00,000 vesting over 4 years"},
+      {"component": "Joining bonus", "amount": "₹50,000", "note": "one time"},
+      {"component": "Benefits", "amount": "₹30,000", "note": "health insurance, home-office budget"}
+    ],
+    "rounds": [
+      {"name": "Coding test", "type": "CODING_TEST", "day": 19, "hour": 10, "cutoff": 60, "description": "Two coding problems and Linux/networking MCQs, 75 minutes, proctored."},
+      {"name": "Systems interview", "type": "TECHNICAL_INTERVIEW", "day": 22, "hour": 10, "description": "Linux, networking and debugging a broken service."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 23, "hour": 14, "description": "Values and collaboration."}
+    ],
+    "events": [
+      {"title": "CloudPeak pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 6, "hour": 11, "hours": 2, "location": "Main auditorium", "description": "A tour of a cloud platform at scale, with a live demo and Q&A."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000203", "title": "DevOps Intern", "jobType": "INTERNSHIP_WITH_PPO",
+    "ctcLpa": 14.0, "stipend": 45000, "tier": "DREAM", "location": "Bengaluru", "skills": "Linux, Docker, CI/CD, Python, Git, Cloud",
+    "minCgpa": 7.0, "branches": "CSE, IT, ECE", "maxBacklogs": 0, "deadlineDays": 18,
+    "description": "A six-month DevOps internship (January-June) with a pre-placement offer for strong performers.\n\nWhat you will do\n• Automate build and release pipelines\n• Write infrastructure as code and internal tools in Python\n• Help the SRE team with monitoring dashboards and alerts\n\nWhat we look for\n• Comfort with the Linux command line and Git\n• Basic Docker and scripting skills\n• A personal or college project you deployed somewhere",
+    "salary": [
+      {"component": "Internship stipend", "amount": "₹45,000", "note": "per month, 6 months"},
+      {"component": "PPO - base pay", "amount": "₹11,00,000", "note": "per annum, after conversion"},
+      {"component": "PPO - performance bonus", "amount": "₹1,50,000", "note": "per annum"},
+      {"component": "PPO - benefits", "amount": "₹1,50,000", "note": "insurance, ESOP eligibility"}
+    ],
+    "rounds": [
+      {"name": "Online test", "type": "APTITUDE_TEST", "day": 19, "hour": 15, "cutoff": 50, "description": "Linux, networking and scripting MCQs."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 24, "hour": 10, "description": "Hands-on Linux and Docker exercise."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000204", "title": "Machine Learning Engineer", "jobType": "FULL_TIME",
+    "ctcLpa": 24.0, "tier": "SUPER_DREAM", "location": "Pune", "skills": "Python, Machine Learning, Deep Learning, PyTorch, NLP, SQL",
+    "minCgpa": 8.0, "branches": "CSE, IT", "maxBacklogs": 0, "deadlineDays": 20,
+    "description": "About Quantix Labs\nQuantix builds language and vision models that read insurance claims, KYC documents and invoices for 60 enterprise customers.\n\nThe role\nTrain, evaluate and ship machine-learning models to production.\n\nResponsibilities\n• Build data pipelines and training code in Python and PyTorch\n• Fine-tune and evaluate NLP and vision models, and track experiments\n• Work with backend engineers to serve models with low latency\n\nWhat we look for\n• Strong maths for ML: linear algebra, probability, optimisation\n• Hands-on ML projects (Kaggle, research or internships)\n• Clean Python and good software habits\n\nGood to have: transformers, MLOps, a published paper.",
+    "salary": [
+      {"component": "Base pay", "amount": "₹18,00,000", "note": "per annum"},
+      {"component": "Performance bonus", "amount": "₹2,00,000", "note": "per annum"},
+      {"component": "Restricted stock units", "amount": "₹2,50,000", "note": "per year, ₹10,00,000 over 4 years"},
+      {"component": "Joining bonus", "amount": "₹1,00,000", "note": "one time"},
+      {"component": "Benefits", "amount": "₹50,000", "note": "insurance, GPU credits, conference budget"}
+    ],
+    "rounds": [
+      {"name": "Coding and ML test", "type": "CODING_TEST", "day": 21, "hour": 10, "cutoff": 65, "description": "ML and probability MCQs plus one coding problem, 90 minutes, proctored."},
+      {"name": "ML interview", "type": "TECHNICAL_INTERVIEW", "day": 24, "hour": 10, "description": "Model design, evaluation and a project deep dive."},
+      {"name": "Coding interview", "type": "TECHNICAL_INTERVIEW", "day": 25, "hour": 10, "description": "Data structures and algorithms."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 26, "hour": 15, "description": "Team fit and expectations."}
+    ],
+    "events": [
+      {"title": "Quantix Labs pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 8, "hour": 14, "hours": 2, "location": "Seminar hall 1", "description": "How AI reads a million documents a day, plus details of the ML Engineer and research intern roles."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000204", "title": "AI Research Intern", "jobType": "INTERNSHIP",
+    "stipend": 60000, "tier": "NORMAL", "location": "Pune (on site)", "skills": "Python, Deep Learning, PyTorch, NLP, Mathematics",
+    "minCgpa": 8.0, "maxBacklogs": 0, "deadlineDays": 20,
+    "description": "A six-month research internship on document-understanding models.\n\nWhat you will do\n• Reproduce a recent paper and run experiments on our datasets\n• Try new ideas for extracting tables and fields from scanned documents\n• Write a short internal report and present your results\n\nWhat we look for\n• Strong maths and Python\n• Deep-learning coursework or projects with PyTorch or TensorFlow",
+    "salary": [
+      {"component": "Stipend", "amount": "₹60,000", "note": "per month, 6 months"},
+      {"component": "GPU and cloud credits", "amount": "Provided", "note": "for experiments"}
+    ],
+    "rounds": [
+      {"name": "Research test", "type": "APTITUDE_TEST", "day": 21, "hour": 15, "cutoff": 60, "description": "Maths, probability and ML MCQs."},
+      {"name": "Research interview", "type": "TECHNICAL_INTERVIEW", "day": 26, "hour": 10, "description": "Discussion of a paper of your choice and your projects."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000205", "title": "Backend Developer (Java)", "jobType": "FULL_TIME",
+    "ctcLpa": 14.0, "tier": "DREAM", "location": "Bengaluru", "skills": "Java, Spring Boot, Microservices, SQL, Redis, Kafka",
+    "minCgpa": 7.0, "branches": "CSE, IT", "maxBacklogs": 0, "deadlineDays": 22,
+    "description": "About NexaRetail\nNexaRetail powers online stores for 2,500 brands, handling search, payments and same-day delivery.\n\nThe role\nBuild the high-traffic Java services behind checkout, orders and inventory.\n\nResponsibilities\n• Design and build microservices with Spring Boot, MySQL, Redis and Kafka\n• Make services fast and reliable during big sale days (100k orders per minute)\n• Write tests, review code and improve monitoring\n\nWhat we look for\n• Strong Java and OOP, and good data-structure skills\n• Understanding of databases, caching and REST API design\n• A backend project you can explain in depth",
+    "salary": [
+      {"component": "Base pay", "amount": "₹11,20,000", "note": "per annum"},
+      {"component": "Variable pay", "amount": "₹1,12,000", "note": "per annum, 10% of base"},
+      {"component": "Joining bonus", "amount": "₹1,00,000", "note": "one time"},
+      {"component": "Benefits", "amount": "₹68,000", "note": "insurance, meal card, shopping vouchers"}
+    ],
+    "rounds": [
+      {"name": "Coding test", "type": "CODING_TEST", "day": 23, "hour": 10, "cutoff": 60, "description": "Two coding problems and Java/DBMS MCQs, proctored."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 27, "hour": 10, "description": "Problem solving and low-level design."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 28, "hour": 14, "description": "Culture and career goals."}
+    ],
+    "events": [
+      {"title": "NexaRetail pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 9, "hour": 11, "hours": 1, "location": "Seminar hall 2", "description": "Inside a Big Billion Day: how NexaRetail scales for sale events."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000205", "title": "Product Analyst Intern", "jobType": "INTERNSHIP_WITH_PPO",
+    "ctcLpa": 10.0, "stipend": 35000, "tier": "DREAM", "location": "Bengaluru", "skills": "SQL, Excel, Statistics, Product Thinking, Communication",
+    "minCgpa": 7.0, "maxBacklogs": 1, "deadlineDays": 22,
+    "description": "A six-month product analytics internship with a pre-placement offer.\n\nWhat you will do\n• Track product metrics and run A/B-test analyses with SQL\n• Turn data into recommendations for product managers\n• Build simple dashboards for weekly reviews\n\nWhat we look for\n• Good SQL and spreadsheet skills\n• Clear written and spoken communication\n• Curiosity about how people shop online\n\nOpen to all branches.",
+    "salary": [
+      {"component": "Internship stipend", "amount": "₹35,000", "note": "per month, 6 months"},
+      {"component": "PPO - base pay", "amount": "₹8,50,000", "note": "per annum, after conversion"},
+      {"component": "PPO - variable pay", "amount": "₹85,000", "note": "per annum"},
+      {"component": "PPO - benefits", "amount": "₹65,000", "note": "insurance, meal card"}
+    ],
+    "rounds": [
+      {"name": "Aptitude test", "type": "APTITUDE_TEST", "day": 23, "hour": 15, "cutoff": 50, "description": "Quantitative, logical and data-interpretation MCQs."},
+      {"name": "Group discussion", "type": "GROUP_DISCUSSION", "day": 27, "hour": 14, "description": "A product case discussion."},
+      {"name": "Final interview", "type": "HR_INTERVIEW", "day": 28, "hour": 10, "description": "Product sense and communication."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000206", "title": "Embedded Software Engineer", "jobType": "FULL_TIME",
+    "ctcLpa": 10.0, "tier": "DREAM", "location": "Chennai", "skills": "C, Embedded Systems, Microcontrollers, RTOS, CAN, Python",
+    "minCgpa": 7.0, "branches": "ECE, EEE, CSE", "maxBacklogs": 1, "deadlineDays": 24,
+    "description": "About Voltrix\nVoltrix designs battery-management systems and motor controllers for electric two- and three-wheelers.\n\nThe role\nWrite the firmware that keeps EV batteries safe and efficient.\n\nResponsibilities\n• Develop firmware in C for ARM Cortex-M microcontrollers\n• Work with CAN, SPI and I2C peripherals and an RTOS\n• Test on hardware-in-the-loop rigs and analyse logs with Python\n\nWhat we look for\n• Strong C programming and digital electronics\n• Microcontroller projects (Arduino, STM32, ESP32 or similar)\n• Debugging skills with oscilloscopes or logic analysers is a plus",
+    "salary": [
+      {"component": "Base pay", "amount": "₹8,40,000", "note": "per annum"},
+      {"component": "Variable pay", "amount": "₹60,000", "note": "per annum"},
+      {"component": "Relocation allowance", "amount": "₹50,000", "note": "one time"},
+      {"component": "Benefits", "amount": "₹50,000", "note": "insurance, EV purchase discount"}
+    ],
+    "rounds": [
+      {"name": "Technical test", "type": "APTITUDE_TEST", "day": 25, "hour": 10, "cutoff": 55, "description": "C, electronics and aptitude MCQs."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 29, "hour": 10, "description": "C programming and embedded fundamentals."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 30, "hour": 14, "description": "Team fit."}
+    ],
+    "events": [
+      {"title": "Voltrix pre-placement talk and EV showcase", "type": "PRE_PLACEMENT_TALK", "day": 11, "hour": 10, "hours": 2, "location": "Electronics block, hall 3", "description": "See a working battery-management system and meet the firmware team."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000207", "title": "Full Stack Developer", "jobType": "FULL_TIME",
+    "ctcLpa": 11.0, "tier": "DREAM", "location": "Hyderabad", "skills": "JavaScript, React, Node.js, Java, SQL, REST APIs",
+    "minCgpa": 7.0, "maxBacklogs": 0, "deadlineDays": 26,
+    "description": "About MedSphere\nMedSphere connects 900 hospitals and clinics through its patient-records and tele-consultation platform.\n\nThe role\nBuild features doctors and patients use every day, from appointment booking to video consultations.\n\nResponsibilities\n• Build responsive React front ends and Node.js / Java APIs\n• Keep patient data secure and the product accessible\n• Work closely with designers and doctors\n\nWhat we look for\n• Good JavaScript, HTML and CSS, and a modern framework (React preferred)\n• Backend basics: REST APIs and SQL\n• A full-stack project you built and deployed",
+    "salary": [
+      {"component": "Base pay", "amount": "₹9,00,000", "note": "per annum"},
+      {"component": "Variable pay", "amount": "₹90,000", "note": "per annum"},
+      {"component": "Joining bonus", "amount": "₹60,000", "note": "one time"},
+      {"component": "Benefits", "amount": "₹50,000", "note": "family health cover"}
+    ],
+    "rounds": [
+      {"name": "Coding test", "type": "CODING_TEST", "day": 27, "hour": 10, "cutoff": 55, "description": "One coding problem and web-development MCQs."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 31, "hour": 10, "description": "Build a small feature live and discuss your projects."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 32, "hour": 14, "description": "Values and motivation."}
+    ],
+    "events": [
+      {"title": "MedSphere pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 13, "hour": 15, "hours": 1, "location": "Seminar hall 1", "description": "Building software for hospitals: product demo and Q&A."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000208", "title": "Game Developer Intern", "jobType": "INTERNSHIP",
+    "stipend": 35000, "tier": "NORMAL", "location": "Mumbai", "skills": "C++, C#, Unity, Mathematics, Data Structures",
+    "minCgpa": 6.5, "maxBacklogs": 1, "deadlineDays": 25,
+    "description": "A three-month internship in a small, fast-moving game studio.\n\nWhat you will do\n• Build gameplay features in Unity (C#)\n• Prototype new game mechanics and play-test them with the team\n• Optimise performance on low-end Android phones\n\nWhat we look for\n• Good C++ or C# skills and data structures\n• A game you have built (game jam projects count)\n• Basic vectors and geometry",
+    "salary": [
+      {"component": "Stipend", "amount": "₹35,000", "note": "per month, 3 months"},
+      {"component": "Certificate and letter of recommendation", "amount": "-", "note": "on successful completion"}
+    ],
+    "rounds": [
+      {"name": "Coding test", "type": "CODING_TEST", "day": 27, "hour": 15, "cutoff": 50, "description": "Two coding problems, 60 minutes."},
+      {"name": "Portfolio interview", "type": "TECHNICAL_INTERVIEW", "day": 33, "hour": 11, "description": "Walk us through a game you built."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000209", "title": "Security Analyst", "jobType": "FULL_TIME",
+    "ctcLpa": 9.5, "tier": "NORMAL", "location": "Noida", "skills": "Networking, Linux, Security, Python, SIEM",
+    "minCgpa": 6.5, "branches": "CSE, IT, ECE", "maxBacklogs": 1, "deadlineDays": 28,
+    "description": "About SecureLayer\nSecureLayer runs a 24x7 security operations centre (SOC) for banks, hospitals and manufacturers.\n\nThe role\nMonitor, investigate and respond to security alerts for our customers.\n\nResponsibilities\n• Triage alerts in our SIEM and investigate suspicious activity\n• Write detection rules and automate response with Python\n• Prepare clear incident reports for customers\n\nWhat we look for\n• Networking fundamentals (TCP/IP, DNS, HTTP) and Linux\n• Interest in security: CTFs, certifications or projects\n• Willingness to work in rotational shifts (shift allowance paid)",
+    "salary": [
+      {"component": "Base pay", "amount": "₹7,80,000", "note": "per annum"},
+      {"component": "Shift allowance", "amount": "₹60,000", "note": "per annum, for night shifts"},
+      {"component": "Variable pay", "amount": "₹60,000", "note": "per annum"},
+      {"component": "Benefits", "amount": "₹50,000", "note": "insurance, certification sponsorship"}
+    ],
+    "rounds": [
+      {"name": "Online test", "type": "APTITUDE_TEST", "day": 29, "hour": 10, "cutoff": 50, "description": "Networking, security and aptitude MCQs."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 34, "hour": 10, "description": "Investigate a sample security incident."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 35, "hour": 14, "description": "Shift work and team fit."}
+    ],
+    "events": [
+      {"title": "SecureLayer pre-placement talk and live CTF", "type": "PRE_PLACEMENT_TALK", "day": 15, "hour": 14, "hours": 3, "location": "Computer centre lab 1", "description": "A short talk followed by a 2-hour capture-the-flag; top scorers get a direct interview."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000210", "title": "Graduate Engineer Trainee", "jobType": "FULL_TIME",
+    "ctcLpa": 4.5, "tier": "NORMAL", "location": "Pune / Chennai / Bengaluru", "skills": "Programming, Aptitude, Communication, SQL",
+    "minCgpa": 6.0, "maxBacklogs": 2, "deadlineDays": 9,
+    "description": "About Orbit\nOrbit Consulting Group is a global IT services company with 60,000 engineers delivering projects for clients in 30 countries.\n\nThe role\nGraduate Engineer Trainees join a paid 12-week training programme and are then placed on client projects in development, testing or support.\n\nWhat we look for\n• Any branch; good aptitude and basic programming in any language\n• Good communication skills\n• Willingness to relocate to any of our development centres\n\nService agreement: 1 year after training.",
+    "salary": [
+      {"component": "Base pay", "amount": "₹3,90,000", "note": "per annum"},
+      {"component": "Variable pay", "amount": "₹30,000", "note": "per annum"},
+      {"component": "Benefits", "amount": "₹30,000", "note": "insurance, provident fund"}
+    ],
+    "rounds": [
+      {"name": "Aptitude test", "type": "APTITUDE_TEST", "day": 10, "hour": 9, "cutoff": 45, "description": "Quantitative, logical, verbal and basic programming MCQs."},
+      {"name": "Technical and HR interview", "type": "TECHNICAL_INTERVIEW", "day": 12, "hour": 9, "description": "A single combined interview on the campus drive day."}
+    ],
+    "events": [
+      {"title": "Orbit Consulting pre-placement talk", "type": "PRE_PLACEMENT_TALK", "day": 3, "hour": 10, "hours": 1, "location": "Main auditorium", "description": "Open to all final-year students. Attendance is recorded."},
+      {"title": "Orbit Consulting campus drive", "type": "DRIVE", "day": 12, "hour": 9, "hours": 8, "location": "Placement cell, block A", "description": "Interviews for students who clear the aptitude test. Carry two copies of your resume and your college ID."}
+    ]
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000211", "title": "Data Scientist Intern", "jobType": "INTERNSHIP_WITH_PPO",
+    "ctcLpa": 12.0, "stipend": 40000, "tier": "DREAM", "location": "Gurugram (hybrid)", "skills": "Python, Machine Learning, Statistics, Time Series, SQL",
+    "minCgpa": 7.5, "maxBacklogs": 0, "deadlineDays": 30,
+    "description": "A six-month data-science internship with a pre-placement offer, working on solar and wind power forecasting.\n\nWhat you will do\n• Build and evaluate time-series forecasting models\n• Clean weather and power-plant data with Python and SQL\n• Present results to the trading team\n\nWhat we look for\n• Python, statistics and machine-learning basics\n• A data-science project or Kaggle competition\n• Interest in climate and energy",
+    "salary": [
+      {"component": "Internship stipend", "amount": "₹40,000", "note": "per month, 6 months"},
+      {"component": "PPO - base pay", "amount": "₹10,00,000", "note": "per annum, after conversion"},
+      {"component": "PPO - performance bonus", "amount": "₹1,00,000", "note": "per annum"},
+      {"component": "PPO - benefits", "amount": "₹1,00,000", "note": "insurance, learning budget"}
+    ],
+    "rounds": [
+      {"name": "Online test", "type": "APTITUDE_TEST", "day": 31, "hour": 10, "cutoff": 55, "description": "Statistics, ML and aptitude MCQs."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 36, "hour": 11, "description": "Discuss a forecasting problem and your projects."}
+    ],
+    "events": []
+  },
+  {
+    "companyId": "00000000-0000-4000-8000-000000000212", "title": "Frontend Developer (React)", "jobType": "FULL_TIME",
+    "ctcLpa": 8.0, "tier": "NORMAL", "location": "Bengaluru / remote", "skills": "JavaScript, React, HTML, CSS, TypeScript, Figma",
+    "minCgpa": 6.5, "maxBacklogs": 1, "deadlineDays": 29,
+    "description": "About PixelCraft\nPixelCraft designs and builds web and mobile products for start-ups and media companies.\n\nThe role\nTurn designs into fast, accessible and beautiful web applications.\n\nResponsibilities\n• Build React and TypeScript front ends from Figma designs\n• Make pages fast, responsive and accessible\n• Work directly with designers and clients\n\nWhat we look for\n• Strong HTML, CSS and JavaScript\n• React projects you can show (GitHub or live links)\n• An eye for detail and good design taste",
+    "salary": [
+      {"component": "Base pay", "amount": "₹6,80,000", "note": "per annum"},
+      {"component": "Variable pay", "amount": "₹60,000", "note": "per annum"},
+      {"component": "Benefits", "amount": "₹60,000", "note": "insurance, remote-work budget"}
+    ],
+    "rounds": [
+      {"name": "Coding test", "type": "CODING_TEST", "day": 30, "hour": 15, "cutoff": 50, "description": "JavaScript and web MCQs plus one coding problem."},
+      {"name": "Technical interview", "type": "TECHNICAL_INTERVIEW", "day": 35, "hour": 15, "description": "Build a small React component and review your portfolio."},
+      {"name": "HR interview", "type": "HR_INTERVIEW", "day": 36, "hour": 15, "description": "Team fit."}
+    ],
+    "events": []
+  }
+]

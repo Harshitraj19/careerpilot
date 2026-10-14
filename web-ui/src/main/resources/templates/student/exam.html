@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Test', ~{::#page}, 'student-exam')}">
+<body>
+<div id="page">
+<input type="hidden" id="test-id" th:value="${testId}">
+<input type="hidden" id="frame-seconds" th:value="${frameSeconds}">
+<div id="exam-intro"></div>
+<div id="exam" class="d-none">
+    <div class="exam-bar d-flex align-items-center gap-3">
+        <strong id="exam-title"></strong>
+        <span class="badge text-bg-light" id="proctor-state"></span>
+        <span class="small text-muted" id="violations"></span>
+        <div class="ms-auto exam-timer" id="timer">--:--</div>
+        <button class="btn btn-danger btn-sm" id="finish"><i class="bi bi-flag me-1"></i>Submit test</button>
+    </div>
+    <div id="warning-banner" class="alert alert-danger d-none"></div>
+    <div class="row g-3">
+        <div class="col-lg-3"><div class="card"><div class="card-header">Questions</div><div class="card-body q-nav" id="q-nav"></div>
+            <div class="card-footer small text-muted"><span class="badge text-bg-success">&nbsp;</span> answered</div></div></div>
+        <div class="col-lg-9"><div class="card"><div class="card-body" id="q-body"></div>
+            <div class="card-footer d-flex justify-content-between">
+                <button class="btn btn-light" id="prev"><i class="bi bi-chevron-left"></i> Previous</button>
+                <button class="btn btn-primary" id="next">Next <i class="bi bi-chevron-right"></i></button>
+            </div></div></div>
+    </div>
+</div>
+<div class="cam-box d-none" id="cam-box"><video id="cam" autoplay muted playsinline></video><span class="cam-status badge text-bg-success" id="cam-status">● monitoring</span>
+    <span class="screen-status badge text-bg-primary d-none" id="screen-status"><i class="bi bi-display"></i> screen shared</span></div>
+<canvas id="snap" width="320" height="240" class="d-none"></canvas>
+</div>
+</body>
+</html>

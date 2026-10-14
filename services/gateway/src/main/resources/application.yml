@@ -1,0 +1,86 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: gateway
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 90s
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 20
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,gateway
+
+placify:
+  gateway:
+    jwt-secret: ${JWT_SECRET:ZGV2LW9ubHktand0LXNlY3JldC1jaGFuZ2UtbWUtcGxhY2lmeS0yMDI2LWtleQ==}
+    gateway-secret: ${GATEWAY_SECRET:dev-gateway-secret-change-me}
+    session-timeout-minutes: ${SESSION_TIMEOUT_MINUTES:15}
+    # comma-separated, e.g. the local address plus the public one when shared with scripts\share-online.ps1
+    allowed-origins: ${WEB_ORIGIN:http://localhost:3000}
+    rate-limit:
+      replenish-rate: ${RATE_LIMIT_PER_SECOND:20}
+      burst-capacity: ${RATE_LIMIT_BURST:40}
+    # Paths that need no login
+    public-paths:
+      - /api/auth/captcha
+      - /api/auth/login
+      - /api/auth/login/2fa
+      - /api/auth/password/forgot
+      - /api/auth/password/reset
+      - /api/auth/company/register
+      - /api/auth/company/register/otp
+      - /api/auth/student/register
+      - /api/auth/student/register/otp
+      - /api/placement/certificates/verify/**
+      - /api/submissions/callback
+      - /api/gateway/**
+      - /ws/**   # WebSocket: authenticated by a one-time ticket inside the notification service
+    # Before the forced first-login password change, only these are allowed
+    first-login-paths:
+      - /api/auth/me
+      - /api/auth/password/change
+      - /api/auth/logout
+    # Coarse role rules (first match wins). Services also check roles with @PreAuthorize.
+    role-rules:
+      "[/api/auth/admin/**]": [ADMIN]
+      "[/api/auth/students/**]": [TPO, ADMIN]
+      "[/api/auth/companies/**]": [TPO, ADMIN]
+      "[/api/auth/users/**]": [TPO, ADMIN]
+      "[/api/placement/policy/**]": [TPO, ADMIN, STUDENT, COMPANY]
+      "[/api/analytics/admin/**]": [ADMIN]
+      "[/api/analytics/tpo/**]": [TPO, ADMIN]
+      "[/api/analytics/reports/**]": [TPO, ADMIN]
+      "[/api/analytics/audit-logs/**]": [ADMIN]
+      "[/api/analytics/company/**]": [COMPANY]
+      "[/api/proctoring/reports/**]": [COMPANY, TPO, ADMIN]

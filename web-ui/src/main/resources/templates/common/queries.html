@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Queries', ~{::#page}, 'queries')}">
+<body>
+<div id="page">
+<div class="page-head">
+    <div><h1 id="q-title">Help desk</h1><div class="sub" id="q-sub"></div></div>
+    <button class="btn btn-primary student-only" id="new-query"><i class="bi bi-plus-lg me-1"></i>Raise a query</button>
+</div>
+<div class="row g-3">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body pb-2">
+                <div class="btn-group w-100 mb-2" role="group" aria-label="Status">
+                    <button class="btn btn-dark" data-status="PENDING">Pending <span class="badge text-bg-light ms-1" id="count-PENDING">0</span></button>
+                    <button class="btn btn-outline-dark" data-status="RESOLVED">Resolved <span class="badge text-bg-light ms-1" id="count-RESOLVED">0</span></button>
+                </div>
+                <div class="row g-2 staff-only">
+                    <div class="col-7"><input class="form-control form-control-sm" id="q-search" placeholder="Search student, reg. no or subject"></div>
+                    <div class="col-5"><select class="form-select form-select-sm" id="q-category"><option value="">All categories</option></select></div>
+                </div>
+            </div>
+            <div class="list-group list-group-flush query-list" id="q-list"></div>
+            <div class="card-body pt-2" id="q-pager"></div>
+        </div>
+    </div>
+    <div class="col-lg-7"><div class="card"><div class="card-body" id="q-thread">
+        <div class="empty"><i class="bi bi-chat-left-dots"></i>Select a query to see the conversation.</div>
+    </div></div></div>
+</div>
+</div>
+</body>
+</html>

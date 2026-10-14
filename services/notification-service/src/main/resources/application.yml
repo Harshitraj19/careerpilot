@@ -1,0 +1,39 @@
+server:
+  port: ${PORT:8090}
+
+spring:
+  application:
+    name: notification-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_notification?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 10000
+      mail.smtp.timeout: 10000
+  thymeleaf:
+    check-template-location: false
+
+placify:
+  security:
+    public-paths:
+      - /ws/**
+  notification:
+    # When false, e-mails are written to the log instead of being sent (handy for local runs)
+    mail-enabled: ${MAIL_ENABLED:false}
+    mail-from: ${MAIL_FROM:CareerPilot <no-reply@careerpilot.local>}
+    public-base-url: ${PUBLIC_BASE_URL:http://localhost:3000}
+    allowed-origins: ${WS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:8080}
+    ticket-ttl-seconds: 60
+    retention-days: 90

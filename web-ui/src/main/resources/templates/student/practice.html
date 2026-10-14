@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Coding practice', ~{::#page}, 'student-practice')}">
+<body>
+<div id="page">
+<div class="page-head">
+    <div><h1>Coding practice</h1><div class="sub">Solve problems, climb your rating and earn badges. The AI tutor gives hints, never spoilers.</div></div>
+    <a class="btn btn-outline-primary" th:href="@{/student/submissions}"><i class="bi bi-clock-history me-1"></i>My submissions</a>
+</div>
+<div class="row g-3 mb-3" id="practice-stats"></div>
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="card"><div class="card-body">
+            <div class="row g-2 mb-3">
+                <div class="col-md-5"><input class="form-control" id="q" placeholder="Search problems"></div>
+                <div class="col-md-3"><select class="form-select" id="difficulty"><option value="">Any difficulty</option><option>EASY</option><option>MEDIUM</option><option>HARD</option></select></div>
+                <div class="col-md-4"><select class="form-select" id="tag"><option value="">Any topic</option></select></div>
+            </div>
+            <div id="problems"></div><div id="pager" class="mt-2"></div>
+        </div></div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-3"><div class="card-header">Recommended for you</div><div class="card-body" id="next"></div></div>
+        <div class="card mb-3"><div class="card-header">Weak topics</div><div class="card-body" id="weak"></div></div>
+        <div class="card"><div class="card-header">My badges</div><div class="card-body" id="badges"></div></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

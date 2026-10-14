@@ -1,0 +1,20 @@
+server:
+  port: ${PORT:8083}
+
+spring:
+  application:
+    name: placement-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_placement?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
+placify:
+  security:
+    public-paths:
+      - /api/placement/certificates/verify/**
+  placement:
+    # Base URL printed in the certificate QR code
+    public-base-url: ${PUBLIC_BASE_URL:http://localhost:3000}
+    offer-reminder-hours: 24
+    slot-reminder-minutes: 60

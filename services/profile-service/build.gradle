@@ -1,0 +1,13 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Resume text extraction and file-type detection
+    implementation "org.apache.pdfbox:pdfbox:${rootProject.pdfboxVersion}"
+    implementation "org.apache.tika:tika-core:${rootProject.tikaVersion}"
+    // Word (.docx) resumes and job descriptions
+    implementation "org.apache.poi:poi-ooxml:${rootProject.poiVersion}"
+    // Tokenising and stemming for the ATS scorer
+    implementation "org.apache.opennlp:opennlp-tools:${rootProject.opennlpVersion}"
+}

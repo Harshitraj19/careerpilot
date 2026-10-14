@@ -1,0 +1,251 @@
+# CareerPilot - full stack.
+#   cp .env.example .env      (then set AI_API_KEY, JUDGE0_* and mail settings)
+#   docker compose up -d --build
+# Web portal: http://localhost:3000   API gateway: http://localhost:8080   Eureka: http://localhost:8761
+# RabbitMQ console: http://localhost:15672 (guest/guest)
+#
+# Optional self-hosted code judge:  docker compose --profile judge0 up -d   (then JUDGE0_URL=http://judge0-server:2358)
+
+x-service: &service
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+  restart: unless-stopped
+  env_file: .env
+  networks: [placify]
+
+x-env: &env
+  TZ: ${TZ:-Asia/Kolkata}
+  JAVA_OPTS: "-Duser.timezone=${TZ:-Asia/Kolkata} -XX:MaxRAMPercentage=70"
+  EUREKA_URL: http://discovery-server:8761/eureka
+  DB_HOST: mysql
+  DB_PORT: 3306
+  REDIS_HOST: redis
+  RABBIT_HOST: rabbitmq
+
+x-depends: &depends
+  mysql: { condition: service_healthy }
+  rabbitmq: { condition: service_healthy }
+  redis: { condition: service_started }
+  discovery-server: { condition: service_healthy }
+
+services:
+  # ------------------------------------------------------------------ infrastructure
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root-change-me}
+      MYSQL_USER: ${DB_USER:-placify}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-placify}
+      TZ: ${TZ:-Asia/Kolkata}
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports: ["3306:3306"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-root-change-me}"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    networks: [placify]
+
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redis-data:/data]
+    ports: ["6379:6379"]
+    networks: [placify]
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD:-guest}
+    ports: ["5672:5672", "15672:15672"]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+    networks: [placify]
+
+  # ------------------------------------------------------------------ platform
+  discovery-server:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/discovery-server } }
+    environment:
+      TZ: ${TZ:-Asia/Kolkata}
+      EUREKA_HOSTNAME: discovery-server
+    ports: ["8761:8761"]
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  gateway:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/gateway } }
+    environment:
+      <<: *env
+    depends_on:
+      redis: { condition: service_started }
+      discovery-server: { condition: service_healthy }
+    ports: ["8080:8080"]
+
+  # ------------------------------------------------------------------ business services
+  auth-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/auth-service } }
+    environment: { <<: *env }
+    depends_on: *depends
+
+  profile-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/profile-service } }
+    environment: { <<: *env }
+    volumes: [profile-files:/app/storage]
+    depends_on: *depends
+
+  placement-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/placement-service } }
+    environment: { <<: *env }
+    volumes: [placement-files:/app/storage]
+    depends_on: *depends
+
+  coding-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/coding-service } }
+    environment: { <<: *env }
+    depends_on: *depends
+
+  submission-service:
+    <<: *service
+    # JDK + compilers so code runs inside this container when no Judge0 is configured
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        MODULE_DIR: services/submission-service
+        RUNTIME_IMAGE: eclipse-temurin:21-jdk-jammy
+        EXTRA_PACKAGES: python3 gcc g++ nodejs
+    environment: { <<: *env }
+    depends_on: *depends
+
+  assessment-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/assessment-service } }
+    environment: { <<: *env }
+    depends_on: *depends
+
+  proctoring-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/proctoring-service } }
+    environment:
+      <<: *env
+      JAVA_OPTS: "-Duser.timezone=${TZ:-Asia/Kolkata} -XX:MaxRAMPercentage=75"
+    volumes:
+      - proctoring-files:/app/storage
+      - djl-cache:/home/placify/.djl.ai
+    depends_on: *depends
+
+  ai-helper-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/ai-helper-service } }
+    environment: { <<: *env }
+    volumes: [djl-cache:/home/placify/.djl.ai]
+    depends_on: *depends
+
+  interview-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/interview-service } }
+    environment: { <<: *env }
+    depends_on: *depends
+
+  notification-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/notification-service } }
+    environment: { <<: *env }
+    depends_on: *depends
+
+  analytics-service:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: services/analytics-service } }
+    environment: { <<: *env }
+    depends_on: *depends
+
+  # ------------------------------------------------------------------ web portal
+  web-ui:
+    <<: *service
+    build: { context: ., dockerfile: docker/Dockerfile, args: { MODULE_DIR: web-ui } }
+    environment:
+      TZ: ${TZ:-Asia/Kolkata}
+      GATEWAY_URL: http://gateway:8080
+      PUBLIC_WS_URL: ${PUBLIC_WS_URL:-ws://localhost:8080/ws/notifications}
+    depends_on:
+      gateway: { condition: service_started }
+    ports: ["3000:3000"]
+
+  # ------------------------------------------------------------------ optional: self-hosted Judge0
+  judge0-server:
+    image: judge0/judge0:1.13.1
+    profiles: [judge0]
+    privileged: true
+    restart: unless-stopped
+    environment: &judge0-env
+      REDIS_HOST: judge0-redis
+      POSTGRES_HOST: judge0-db
+      POSTGRES_DB: judge0
+      POSTGRES_USER: judge0
+      POSTGRES_PASSWORD: ${JUDGE0_DB_PASSWORD:-judge0-change-me}
+      REDIS_PASSWORD: ${JUDGE0_REDIS_PASSWORD:-judge0-redis-change-me}
+      AUTHN_TOKEN: ${JUDGE0_AUTH_TOKEN:-}
+      ENABLE_WAIT_RESULT: "false"
+    ports: ["2358:2358"]
+    depends_on: [judge0-db, judge0-redis]
+    networks: [placify]
+
+  judge0-workers:
+    image: judge0/judge0:1.13.1
+    profiles: [judge0]
+    command: ["./scripts/workers"]
+    privileged: true
+    restart: unless-stopped
+    environment: *judge0-env
+    depends_on: [judge0-db, judge0-redis]
+    networks: [placify]
+
+  judge0-db:
+    image: postgres:16-alpine
+    profiles: [judge0]
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: judge0
+      POSTGRES_USER: judge0
+      POSTGRES_PASSWORD: ${JUDGE0_DB_PASSWORD:-judge0-change-me}
+    volumes: [judge0-db:/var/lib/postgresql/data]
+    networks: [placify]
+
+  judge0-redis:
+    image: redis:7.4-alpine
+    profiles: [judge0]
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${JUDGE0_REDIS_PASSWORD:-judge0-redis-change-me}"]
+    networks: [placify]
+
+networks:
+  placify:
+
+volumes:
+  mysql-data:
+  redis-data:
+  profile-files:
+  placement-files:
+  proctoring-files:
+  djl-cache:
+  judge0-db:

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('AI mock interview', ~{::#page}, 'student-mock')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>AI mock interview</h1><div class="sub">The interviewer speaks each question; answer by voice or by typing. Every answer is scored with feedback.</div></div>
+    <span class="badge text-bg-light align-self-start" id="ai-engine"></span></div>
+<div class="row g-3">
+    <div class="col-lg-8"><div id="interview-area">
+        <form class="card" id="start-form"><div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6"><label class="form-label">Target role</label><input class="form-control" name="role" required maxlength="120" placeholder="Software Engineer"></div>
+                <div class="col-md-3"><label class="form-label">Type</label><select class="form-select" name="type">
+                    <option value="TECHNICAL">Technical</option><option value="HR">HR</option><option value="MIXED">Mixed</option></select></div>
+                <div class="col-md-3"><label class="form-label">Difficulty</label><select class="form-select" name="difficulty">
+                    <option>EASY</option><option selected>MEDIUM</option><option>HARD</option></select></div>
+                <div class="col-md-9"><label class="form-label">Skills to focus on</label><input class="form-control" name="skills" data-list placeholder="Java, DBMS, OOP"></div>
+                <div class="col-md-3"><label class="form-label">Questions</label><input class="form-control" type="number" name="questionCount" value="5" min="3" max="10"></div>
+                <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="voice-mode" checked>
+                    <label class="form-check-label" for="voice-mode">Voice mode: the interviewer reads questions aloud and you can answer with your microphone</label></div></div>
+            </div>
+            <button class="btn btn-primary mt-3" type="submit"><i class="bi bi-mic me-1"></i>Start interview</button>
+        </div></form>
+    </div></div>
+    <div class="col-lg-4"><div class="card"><div class="card-header">Past interviews</div><div class="card-body p-0" id="past"></div></div></div>
+</div>
+</div>
+</body>
+</html>

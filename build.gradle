@@ -1,0 +1,100 @@
+// CareerPilot - root build
+// Every service is a Spring Boot application; `common` is a shared library.
+
+plugins {
+    id 'org.springframework.boot' version '3.5.5' apply false
+    id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+ext {
+    springCloudVersion = '2025.0.0'
+    springAiVersion    = '1.0.1'
+    jjwtVersion        = '0.12.6'
+    springdocVersion   = '2.8.9'
+    djlVersion         = '0.31.0'
+    opencvVersion      = '4.9.0-0'
+    jplagVersion       = '6.1.0'
+    tribuoVersion      = '4.3.1'
+    pdfboxVersion      = '3.0.3'
+    tikaVersion        = '2.9.2'
+    opennlpVersion     = '2.5.0'
+    zxingVersion       = '3.5.3'
+    openpdfVersion     = '2.0.3'
+    poiVersion         = '5.3.0'
+}
+
+allprojects {
+    group = 'com.placify'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:3.5.5"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+        }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-parameters']
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+    }
+
+    // Runnable modules only need the executable boot jar (the Dockerfile copies a single *.jar)
+    plugins.withId('org.springframework.boot') {
+        tasks.named('jar') { enabled = false }
+    }
+}
+
+// Shared dependency set for every business microservice (everything except gateway, discovery and web-ui)
+ext.serviceDependencies = { Project p ->
+    p.dependencies {
+        implementation project(':common')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-amqp'
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+        implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+        implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+        implementation 'org.flywaydb:flyway-core'
+        implementation 'org.flywaydb:flyway-mysql'
+        implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${rootProject.springdocVersion}"
+        implementation 'io.micrometer:micrometer-registry-prometheus'
+        runtimeOnly 'com.mysql:mysql-connector-j'
+
+        testImplementation 'org.springframework.security:spring-security-test'
+        testRuntimeOnly 'com.h2database:h2'
+    }
+}

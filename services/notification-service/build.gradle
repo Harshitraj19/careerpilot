@@ -1,0 +1,13 @@
+apply plugin: 'org.springframework.boot'
+
+rootProject.serviceDependencies(project)
+
+dependencies {
+    // Live notifications, proctoring warnings and contest leaderboards over STOMP/WebSocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // E-mails rendered from Thymeleaf templates
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // One-time WebSocket tickets
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+}

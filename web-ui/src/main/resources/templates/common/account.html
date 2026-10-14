@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Account & security', ~{::#page}, 'account')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Account &amp; security</h1></div></div>
+<div class="row g-3">
+    <div class="col-lg-5">
+        <div class="card mb-3"><div class="card-header">Account</div><div class="card-body small" id="account"></div></div>
+        <div class="card"><div class="card-header">Two-step login</div><div class="card-body">
+            <p class="small text-muted">When on, we e-mail you a one-time code every time you log in.</p>
+            <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="tfa"><label class="form-check-label" for="tfa">Require an e-mail code at login</label></div>
+            <a class="btn btn-outline-primary btn-sm mt-3" th:href="@{/account/change-password}">Change password</a>
+        </div></div>
+    </div>
+    <div class="col-lg-7"><div class="card"><div class="card-header">Recent logins</div><div class="card-body p-0" id="history"></div></div></div>
+</div>
+</div>
+</body>
+</html>

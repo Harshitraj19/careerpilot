@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Contests', ~{::#page}, 'tpo-contests')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Coding contests</h1><div class="sub">Schedule contests from the question bank; the leaderboard updates live.</div></div>
+    <button class="btn btn-primary" id="new"><i class="bi bi-plus-lg me-1"></i>New contest</button></div>
+<div class="card mb-3"><div class="card-body p-0" id="list"></div></div>
+<div class="card d-none" id="board-card"><div class="card-header" id="board-title"></div><div class="card-body p-0" id="board"></div></div>
+</div>
+</body>
+</html>

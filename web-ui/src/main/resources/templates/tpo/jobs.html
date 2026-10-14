@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/page :: page('Jobs & drives', ~{::#page}, 'tpo-jobs')}">
+<body>
+<div id="page">
+<div class="page-head"><div><h1>Jobs &amp; drives</h1><div class="sub">Approve postings, set tiers and follow every drive.</div></div>
+    <div class="d-flex gap-2"><select class="form-select" id="status" style="width:auto"><option value="">All</option><option value="PENDING_APPROVAL" selected>Pending approval</option><option>OPEN</option><option>CLOSED</option><option>REJECTED</option></select>
+        <a class="btn btn-primary" th:href="@{/tpo/jobs/new}"><i class="bi bi-plus-lg me-1"></i>Create drive</a></div></div>
+<div class="card"><div class="card-body p-0" id="jobs"></div></div>
+</div>
+</body>
+</html>

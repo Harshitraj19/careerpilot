@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/auth :: auth('Error', ~{::#page})}">
+<body>
+<div id="page">
+    <div class="card auth-card">
+        <div class="card-body p-4 text-center">
+            <div class="display-4 fw-bold text-primary" th:text="${status}">404</div>
+            <p class="lead" th:switch="${status}">
+                <span th:case="404">We could not find that page.</span>
+                <span th:case="403">You do not have access to this page.</span>
+                <span th:case="*">Something went wrong. Please try again.</span>
+            </p>
+            <a class="btn btn-primary" th:href="@{/}">Go to my dashboard</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

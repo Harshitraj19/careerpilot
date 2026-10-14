@@ -1,0 +1,19 @@
+server:
+  port: ${PORT:8084}
+
+spring:
+  application:
+    name: coding-service
+  config:
+    import: classpath:placify-common.yml
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/placify_coding?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+placify:
+  coding:
+    starting-rating: 1200
+    wrong-attempt-penalty-minutes: 10
