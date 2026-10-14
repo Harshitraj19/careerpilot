@@ -7,8 +7,8 @@ out/
 .vscode/
 .DS_Store
 .env
-data/
-storage/
+/data/
+/storage/
 *.log
 bin/
 

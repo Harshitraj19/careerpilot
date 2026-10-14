@@ -2,7 +2,7 @@
 **/.gradle
 .git
 .idea
-**/storage
-**/data
+storage
+data
 *.zip
 docs
