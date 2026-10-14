@@ -72,8 +72,16 @@ $vercelLink = $null
 if (-not $NoVercel -and (Get-Command vercel -ErrorAction SilentlyContinue)) {
     Write-Host 'Updating the Vercel page ...'
     Push-Location (Split-Path $page)
-    $out = (& vercel deploy --prod --yes 2>&1 | Out-String)
-    if ($LASTEXITCODE -eq 0) { $vercelLink = "https://$VercelDomain" } else { Write-Host $out }
+    # Vercel occasionally rejects a deploy ("Not authorized") while it refreshes the login; try a few times
+    for ($attempt = 1; $attempt -le 3 -and -not $vercelLink; $attempt++) {
+        $out = (& vercel deploy --prod --yes 2>&1 | Out-String)
+        if ($LASTEXITCODE -eq 0) {
+            $vercelLink = "https://$VercelDomain"
+        } else {
+            Write-Host "Vercel update failed (attempt $attempt of 3): $(($out -split "`n" | Select-String 'Error' | Select-Object -First 1))"
+            Start-Sleep -Seconds 15
+        }
+    }
     Pop-Location
 }
 
