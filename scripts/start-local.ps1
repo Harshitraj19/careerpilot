@@ -135,12 +135,17 @@ function Start-App([string]$App) {
         Write-Host "  $App is already running"
         return
     }
-    $heap = if ($App -in @('proctoring-service', 'ai-helper-service') -and $WithModels) { '768m' } else { '320m' }
+    $heap = if ($App -in @('proctoring-service', 'ai-helper-service') -and $WithModels) { '768m' } else { '256m' }
+    # Lean settings for 14 JVMs on a laptop: the heap starts small and gives memory back (MaxHeapFreeRatio) instead
+    # of keeping its start-up peak, and code cache, thread stacks, Tomcat threads and DB pools are kept small.
+    $lean = '-Xms32m -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=30 -XX:ReservedCodeCacheSize=48m -XX:MaxMetaspaceSize=192m ' +
+            '-Xss512k -XX:MaxDirectMemorySize=64m -Dserver.tomcat.threads.min-spare=2 ' +
+            '-Dspring.datasource.hikari.maximum-pool-size=4 -Dspring.datasource.hikari.minimum-idle=1'
     $jar = (Get-Jar $App).FullName
     # Register with Eureka as 127.0.0.1: the Wi-Fi address changes between networks, and a stale
     # registration makes the gateway forward requests to an address that no longer exists.
     $network = '-Deureka.instance.ip-address=127.0.0.1 -Deureka.instance.hostname=localhost -Dspring.cloud.inetutils.preferred-networks=127.0.0.1'
-    Start-Process $java -ArgumentList "-Xmx$heap -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -Duser.timezone=$($env:TZ) $network -jar `"$jar`"" `
+    Start-Process $java -ArgumentList "-Xmx$heap $lean -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -Duser.timezone=$($env:TZ) $network -jar `"$jar`"" `
         -WindowStyle Hidden -RedirectStandardOutput (Join-Path $Logs "$App.log") -RedirectStandardError (Join-Path $Logs "$App.err.log")
     Write-Host "  started $App"
 }

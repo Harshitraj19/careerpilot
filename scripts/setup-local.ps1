@@ -88,7 +88,16 @@ bind-address=127.0.0.1
 character-set-server=utf8mb4
 collation-server=utf8mb4_unicode_ci
 default-time-zone=+00:00
-innodb_buffer_pool_size=128M
+innodb_buffer_pool_size=64M
+# small footprint for a laptop: no performance monitoring, few connections and small buffers
+performance_schema=OFF
+max_connections=80
+innodb_log_buffer_size=8M
+key_buffer_size=8M
+table_open_cache=256
+tmp_table_size=16M
+max_heap_table_size=16M
+thread_cache_size=8
 "@ | Set-Content -Encoding ascii $ini
 
 if (-not (Test-Path $dataDir)) {

@@ -97,10 +97,13 @@ and Node.js on the PATH (Java always works).
 copy .env.example .env
 powershell -ExecutionPolicy Bypass -File scripts\setup-local.ps1   # once: portable MySQL, Redis, Erlang, RabbitMQ
 powershell -ExecutionPolicy Bypass -File scripts\start-local.ps1   # builds if needed, starts everything (~2 minutes)
-powershell -ExecutionPolicy Bypass -File scripts\stop-local.ps1    # -All also stops MySQL, Redis and RabbitMQ
+powershell -ExecutionPolicy Bypass -File scripts\stop-local.ps1    # stops everything, incl. MySQL, Redis, RabbitMQ and Gradle daemons
 ```
 
 The runtime lives in `%USERPROFILE%\placify-runtime` (logs in its `logs` folder), so nothing is installed system-wide.
+
+The apps start with small-memory JVM settings (about 4 GB for all 14 services) and MySQL runs without the
+performance schema. Run `stop-local.ps1` when you are done: it stops everything, so no memory stays in use.
 
 ### Sharing a public link
 
